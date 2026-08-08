@@ -1,0 +1,270 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://animind.local/schema/storyboard-1.0.json",
+  "title": "AniMind Renderer-Neutral Storyboard",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schemaVersion",
+    "kind",
+    "generatedAt",
+    "source",
+    "project",
+    "planner",
+    "entities",
+    "locations",
+    "scenes",
+    "timeline"
+  ],
+  "properties": {
+    "schemaVersion": {"const": "1.0"},
+    "kind": {"const": "animind.renderer-neutral-storyboard"},
+    "generatedAt": {"type": "string", "format": "date-time"},
+    "source": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["storyPath", "wordCount", "narrationMode", "storyText"],
+      "properties": {
+        "storyPath": {"type": "string"},
+        "wordCount": {"type": "integer", "minimum": 1},
+        "narrationMode": {"type": "string", "minLength": 1},
+        "storyText": {"type": "string", "minLength": 1}
+      }
+    },
+    "project": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "title",
+        "visualStyle",
+        "frame",
+        "estimatedDurationSeconds",
+        "sceneCount",
+        "narrationWordsPerMinute",
+        "baseSeed"
+      ],
+      "properties": {
+        "title": {"type": "string", "minLength": 1},
+        "visualStyle": {"type": "string", "minLength": 1},
+        "frame": {"$ref": "#/$defs/frame"},
+        "estimatedDurationSeconds": {"type": "number", "exclusiveMinimum": 0},
+        "sceneCount": {"type": "integer", "minimum": 1},
+        "narrationWordsPerMinute": {"type": "integer", "minimum": 1},
+        "baseSeed": {"type": "integer", "minimum": 0, "maximum": 4294967295}
+      }
+    },
+    "planner": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["type", "model"],
+      "properties": {
+        "type": {"enum": ["local", "openai"]},
+        "model": {"type": ["string", "null"]}
+      }
+    },
+    "entities": {
+      "type": "array",
+      "items": {"$ref": "#/$defs/entity"}
+    },
+    "locations": {
+      "type": "array",
+      "items": {"$ref": "#/$defs/location"}
+    },
+    "scenes": {
+      "type": "array",
+      "minItems": 1,
+      "items": {"$ref": "#/$defs/scene"}
+    },
+    "timeline": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["sceneOrder", "narrationTrack", "finalDurationSeconds"],
+      "properties": {
+        "sceneOrder": {
+          "type": "array",
+          "minItems": 1,
+          "items": {"$ref": "#/$defs/id"}
+        },
+        "narrationTrack": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": ["sceneId", "startSeconds", "gainDb"],
+            "properties": {
+              "sceneId": {"$ref": "#/$defs/id"},
+              "startSeconds": {"type": "number", "minimum": 0},
+              "gainDb": {"type": "number"}
+            }
+          }
+        },
+        "finalDurationSeconds": {"type": "number", "exclusiveMinimum": 0}
+      }
+    }
+  },
+  "$defs": {
+    "id": {
+      "type": "string",
+      "pattern": "^[a-z][a-z0-9_]*$"
+    },
+    "frame": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["width", "height", "aspectRatio", "framesPerSecond"],
+      "properties": {
+        "width": {"type": "integer", "minimum": 1},
+        "height": {"type": "integer", "minimum": 1},
+        "aspectRatio": {"type": "string", "pattern": "^[1-9][0-9]*:[1-9][0-9]*$"},
+        "framesPerSecond": {"type": "integer", "minimum": 1}
+      }
+    },
+    "entity": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "entityId",
+        "name",
+        "entityType",
+        "visualDescription",
+        "continuityNotes"
+      ],
+      "properties": {
+        "entityId": {"$ref": "#/$defs/id"},
+        "name": {"type": "string", "minLength": 1},
+        "entityType": {"type": "string", "minLength": 1},
+        "visualDescription": {"type": "string", "minLength": 1},
+        "continuityNotes": {"type": "string"}
+      }
+    },
+    "location": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["locationId", "name", "visualDescription", "continuityNotes"],
+      "properties": {
+        "locationId": {"$ref": "#/$defs/id"},
+        "name": {"type": "string", "minLength": 1},
+        "visualDescription": {"type": "string", "minLength": 1},
+        "continuityNotes": {"type": "string"}
+      }
+    },
+    "action": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "actionId",
+        "actorId",
+        "verb",
+        "targetId",
+        "manner",
+        "description",
+        "startOffsetSeconds",
+        "durationSeconds"
+      ],
+      "properties": {
+        "actionId": {"$ref": "#/$defs/id"},
+        "actorId": {"anyOf": [{"$ref": "#/$defs/id"}, {"type": "null"}]},
+        "verb": {"type": "string", "minLength": 1},
+        "targetId": {"anyOf": [{"$ref": "#/$defs/id"}, {"type": "null"}]},
+        "manner": {"type": "string"},
+        "description": {"type": "string", "minLength": 1},
+        "startOffsetSeconds": {"type": "number", "minimum": 0},
+        "durationSeconds": {"type": "number", "exclusiveMinimum": 0}
+      }
+    },
+    "camera": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["shotType", "angle", "movement", "subject", "description"],
+      "properties": {
+        "shotType": {"type": "string", "minLength": 1},
+        "angle": {"type": "string", "minLength": 1},
+        "movement": {"type": "string", "minLength": 1},
+        "subject": {"type": "string", "minLength": 1},
+        "description": {"type": "string", "minLength": 1}
+      }
+    },
+    "scene": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "sceneId",
+        "sequence",
+        "startSeconds",
+        "endSeconds",
+        "durationSeconds",
+        "seed",
+        "narration",
+        "visual",
+        "transitionIn"
+      ],
+      "properties": {
+        "sceneId": {"$ref": "#/$defs/id"},
+        "sequence": {"type": "integer", "minimum": 1},
+        "startSeconds": {"type": "number", "minimum": 0},
+        "endSeconds": {"type": "number", "exclusiveMinimum": 0},
+        "durationSeconds": {"type": "number", "exclusiveMinimum": 0},
+        "seed": {"type": "integer", "minimum": 0, "maximum": 4294967295},
+        "narration": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["text", "wordCount", "startOffsetSeconds"],
+          "properties": {
+            "text": {"type": "string", "minLength": 1},
+            "wordCount": {"type": "integer", "minimum": 1},
+            "startOffsetSeconds": {"type": "number", "minimum": 0}
+          }
+        },
+        "visual": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "summary",
+            "locationId",
+            "settingDescription",
+            "entityIds",
+            "actions",
+            "camera",
+            "look",
+            "continuityNotes"
+          ],
+          "properties": {
+            "summary": {"type": "string", "minLength": 1},
+            "locationId": {"anyOf": [{"$ref": "#/$defs/id"}, {"type": "null"}]},
+            "settingDescription": {"type": "string", "minLength": 1},
+            "entityIds": {
+              "type": "array",
+              "items": {"$ref": "#/$defs/id"},
+              "uniqueItems": true
+            },
+            "actions": {
+              "type": "array",
+              "minItems": 1,
+              "items": {"$ref": "#/$defs/action"}
+            },
+            "camera": {"$ref": "#/$defs/camera"},
+            "look": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": ["lighting", "mood"],
+              "properties": {
+                "lighting": {"type": "string", "minLength": 1},
+                "mood": {"type": "string", "minLength": 1}
+              }
+            },
+            "continuityNotes": {"type": "string"}
+          }
+        },
+        "transitionIn": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["type", "description"],
+          "properties": {
+            "type": {"enum": ["fade", "cut", "dissolve", "match-cut", "custom"]},
+            "description": {"type": "string", "minLength": 1}
+          }
+        }
+      }
+    }
+  }
+}

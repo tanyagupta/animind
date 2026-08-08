@@ -1,0 +1,352 @@
+{
+  "schemaVersion": "1.0",
+  "kind": "animind.renderer-neutral-storyboard",
+  "generatedAt": "2026-08-08T18:32:42.319869Z",
+  "source": {
+    "storyPath": "lanternfly.txt",
+    "wordCount": 68,
+    "narrationMode": "faithful-chunking",
+    "storyText": "A little brown insect crawls laboriously from one corner of my cement heavy terrace to another. I wonder what thoughts it [thinks], what are its goals and aspirations, its dreams and disappointments, its friends and enemies.\n\nI check my email, a friendly notice from the county pops up. “Vacuuming or squashing nymphs are the easiest way to reduce the population of spotted lanternfly, without using pesticide,” it said."
+  },
+  "project": {
+    "title": "A Little Brown Insect Crosses the Terrace",
+    "visualStyle": "Cinematic animated film with realistic insect locomotion, subtly expressive body language, shallow-depth macro photography, polished natural lighting, and a restrained gray, brown, moss-green, and muted teal palette. Maintain coherent terrace geography and scale. No visible writing, captions, logos, or readable interface text.",
+    "frame": {
+      "width": 1280,
+      "height": 720,
+      "aspectRatio": "16:9",
+      "framesPerSecond": 24
+    },
+    "estimatedDurationSeconds": 34.0,
+    "sceneCount": 4,
+    "narrationWordsPerMinute": 145,
+    "baseSeed": 3744029602
+  },
+  "planner": {
+    "type": "openai",
+    "model": "gpt-5.6"
+  },
+  "entities": [
+    {
+      "entityId": "lanternfly_nymph",
+      "name": "Little Lanternfly Nymph",
+      "entityType": "creature",
+      "visualDescription": "Tiny brown-black nymph with faint cream speckles, six slender legs, short antennae, a segmented oval body, and slightly dusty wingless shell; movements are slow, deliberate, and physically effortful.",
+      "continuityNotes": "Keep identical body proportions, cream speckle pattern, dusty shell, and hesitant gait across all terrace scenes."
+    },
+    {
+      "entityId": "terrace_observer",
+      "name": "Terrace Observer",
+      "entityType": "person",
+      "visualDescription": "Adult seen only through medium-brown hands and forearms, with short clean nails and a muted teal cotton sleeve; movements are calm and curious.",
+      "continuityNotes": "Never reveal the observer's face; preserve the medium-brown hands, short nails, and muted teal sleeve."
+    },
+    {
+      "entityId": "concrete_seam",
+      "name": "Raised Concrete Seam",
+      "entityType": "environment feature",
+      "visualDescription": "A low rough ridge in the pale gray terrace concrete.",
+      "continuityNotes": "Keep its position fixed along the established terrace route."
+    },
+    {
+      "entityId": "pebble",
+      "name": "Terrace Pebble",
+      "entityType": "prop",
+      "visualDescription": "A small irregular gray-brown pebble beside a patch of moss.",
+      "continuityNotes": "Keep the same shape, scale, and position in scenes two and four."
+    },
+    {
+      "entityId": "laptop",
+      "name": "Laptop",
+      "entityType": "prop",
+      "visualDescription": "A slim laptop with a softly glowing screen and abstract unreadable interface symbols.",
+      "continuityNotes": "Show no readable text, brands, or logos."
+    },
+    {
+      "entityId": "vacuum_nozzle",
+      "name": "Compact Vacuum Nozzle",
+      "entityType": "prop",
+      "visualDescription": "A compact dark vacuum nozzle sized realistically against the observer’s hand.",
+      "continuityNotes": "Keep its shape and scale stable as it approaches the insect."
+    }
+  ],
+  "locations": [
+    {
+      "locationId": "terrace_route",
+      "name": "Urban Terrace Route",
+      "visualDescription": "A weathered urban terrace with pale gray cement, hairline cracks, scattered grit, a tiny moss patch, a small pebble, and distant soft-focus planters.",
+      "continuityNotes": "Maintain a coherent route from the shaded corner toward the sunlit planters."
+    },
+    {
+      "locationId": "terrace_door_table",
+      "name": "Table at the Terrace Door",
+      "visualDescription": "A small table just inside an open terrace door, with the established concrete terrace and planters visible beyond.",
+      "continuityNotes": "Preserve the doorway, table, terrace geography, and daylight direction."
+    }
+  ],
+  "scenes": [
+    {
+      "sceneId": "scene_001",
+      "sequence": 1,
+      "startSeconds": 0.0,
+      "endSeconds": 8.0,
+      "durationSeconds": 8,
+      "seed": 3056193009,
+      "narration": {
+        "text": "A little brown insect crawls laboriously from one corner of my cement heavy terrace to another.",
+        "wordCount": 16,
+        "startOffsetSeconds": 0.25
+      },
+      "visual": {
+        "summary": "The tiny nymph struggles across a broad expanse of rough concrete.",
+        "locationId": "terrace_route",
+        "settingDescription": "A weathered urban terrace with pale gray cement, hairline cracks, scattered grit, and distant soft-focus planters.",
+        "entityIds": [
+          "lanternfly_nymph",
+          "concrete_seam"
+        ],
+        "actions": [
+          {
+            "actionId": "scene_001_action_01",
+            "actorId": "lanternfly_nymph",
+            "verb": "crawl_over",
+            "targetId": "concrete_seam",
+            "manner": "slowly and laboriously",
+            "description": "The nymph slowly hauls itself over the raised concrete seam.",
+            "startOffsetSeconds": 0.0,
+            "durationSeconds": 4.0
+          },
+          {
+            "actionId": "scene_001_action_02",
+            "actorId": "lanternfly_nymph",
+            "verb": "slip_and_recover",
+            "targetId": null,
+            "manner": "with visible effort",
+            "description": "Its legs slip once before it regains purchase and continues.",
+            "startOffsetSeconds": 4.0,
+            "durationSeconds": 4.0
+          }
+        ],
+        "camera": {
+          "shotType": "extreme macro",
+          "angle": "ground-level",
+          "movement": "steady tracking",
+          "subject": "the lanternfly nymph",
+          "description": "Ground-level extreme macro tracking beside the insect, moving steadily from the shaded corner toward the open terrace."
+        },
+        "look": {
+          "lighting": "Soft morning sun cuts across cool shade, catching dust and the nymph's cream speckles.",
+          "mood": "Patient, intimate, and quietly heroic."
+        },
+        "continuityNotes": "Show the tiny brown-black nymph with cream speckles, six slender legs, short antennae, dusty wingless shell, and hesitant gait; establish travel from the shaded corner toward the sunlit planters."
+      },
+      "transitionIn": {
+        "type": "fade",
+        "description": "fade-in"
+      }
+    },
+    {
+      "sceneId": "scene_002",
+      "sequence": 2,
+      "startSeconds": 8.0,
+      "endSeconds": 18.0,
+      "durationSeconds": 10,
+      "seed": 2083036562,
+      "narration": {
+        "text": "I wonder what thoughts it [thinks], what are its goals and aspirations, its dreams and disappointments, its friends and enemies.",
+        "wordCount": 20,
+        "startOffsetSeconds": 0.25
+      },
+      "visual": {
+        "summary": "The nymph climbs a pebble as the terrace becomes a vast, uncertain world around it.",
+        "locationId": "terrace_route",
+        "settingDescription": "The same terrace route near a tiny moss patch, with a warm planter ahead and blurred ant shapes moving far behind.",
+        "entityIds": [
+          "lanternfly_nymph",
+          "pebble"
+        ],
+        "actions": [
+          {
+            "actionId": "scene_002_action_01",
+            "actorId": "lanternfly_nymph",
+            "verb": "climb",
+            "targetId": "pebble",
+            "manner": "hesitantly",
+            "description": "The nymph climbs to the pebble’s crest.",
+            "startOffsetSeconds": 0.0,
+            "durationSeconds": 5.0
+          },
+          {
+            "actionId": "scene_002_action_02",
+            "actorId": "lanternfly_nymph",
+            "verb": "pause_and_search",
+            "targetId": null,
+            "manner": "with searching antennae",
+            "description": "It pauses, searches with its antennae, and leans toward the distant planter.",
+            "startOffsetSeconds": 5.0,
+            "durationSeconds": 5.0
+          }
+        ],
+        "camera": {
+          "shotType": "macro close-up",
+          "angle": "low angle",
+          "movement": "slow orbit from behind to front",
+          "subject": "the lanternfly nymph",
+          "description": "Slow macro orbit from behind to a low frontal close-up, keeping the insect dominant while the immense terrace falls out of focus."
+        },
+        "look": {
+          "lighting": "Warm sunlight rims the shell while long, soft shadows suggest both shelter and danger.",
+          "mood": "Contemplative, hopeful, and faintly vulnerable."
+        },
+        "continuityNotes": "Preserve the nymph's brown-black body, cream speckles, six slender legs, short antennae, dusty shell, and hesitant gait; it remains on the established route toward the planters."
+      },
+      "transitionIn": {
+        "type": "custom",
+        "description": "Rack focus from the nymph's searching antennae to a softly glowing laptop beyond the terrace doorway."
+      }
+    },
+    {
+      "sceneId": "scene_003",
+      "sequence": 3,
+      "startSeconds": 18.0,
+      "endSeconds": 24.0,
+      "durationSeconds": 6,
+      "seed": 2723730286,
+      "narration": {
+        "text": "I check my email, a friendly notice from the county pops up.",
+        "wordCount": 12,
+        "startOffsetSeconds": 0.25
+      },
+      "visual": {
+        "summary": "The observer checks a new civic notification on a laptop.",
+        "locationId": "terrace_door_table",
+        "settingDescription": "A small table just inside the open terrace door, with the same concrete and planters visible beyond.",
+        "entityIds": [
+          "terrace_observer",
+          "laptop"
+        ],
+        "actions": [
+          {
+            "actionId": "scene_003_action_01",
+            "actorId": "terrace_observer",
+            "verb": "tap",
+            "targetId": "laptop",
+            "manner": "calmly",
+            "description": "The observer taps the laptop trackpad and opens an abstract civic notification with no readable text.",
+            "startOffsetSeconds": 0.0,
+            "durationSeconds": 6.0
+          }
+        ],
+        "camera": {
+          "shotType": "close-up",
+          "angle": "over-the-shoulder",
+          "movement": "gentle push-in",
+          "subject": "the observer’s hand and laptop",
+          "description": "Over-the-shoulder close shot with a gentle push toward the screen; all interface elements remain symbolic and unreadable."
+        },
+        "look": {
+          "lighting": "Balanced daylight from the terrace mixes with a soft warm glow from the laptop.",
+          "mood": "Ordinary, calm, and deceptively reassuring."
+        },
+        "continuityNotes": "Show only the observer's medium-brown hand, short clean nails, and muted teal sleeve; the same terrace remains visible outside, with no readable text or recognizable logos."
+      },
+      "transitionIn": {
+        "type": "custom",
+        "description": "The camera pushes through the notification's simple insect pictogram into a matching macro view of the real terrace."
+      }
+    },
+    {
+      "sceneId": "scene_004",
+      "sequence": 4,
+      "startSeconds": 24.0,
+      "endSeconds": 34.0,
+      "durationSeconds": 10,
+      "seed": 1198189685,
+      "narration": {
+        "text": "“Vacuuming or squashing nymphs are the easiest way to reduce the population of spotted lanternfly, without using pesticide,” it said.",
+        "wordCount": 20,
+        "startOffsetSeconds": 0.25
+      },
+      "visual": {
+        "summary": "A vacuum nozzle advances toward the same nymph on the concrete.",
+        "locationId": "terrace_route",
+        "settingDescription": "The established terrace route beside the pebble and moss patch, now viewed from just above ground level.",
+        "entityIds": [
+          "lanternfly_nymph",
+          "terrace_observer",
+          "pebble",
+          "vacuum_nozzle"
+        ],
+        "actions": [
+          {
+            "actionId": "scene_004_action_01",
+            "actorId": "terrace_observer",
+            "verb": "lower",
+            "targetId": "vacuum_nozzle",
+            "manner": "steadily",
+            "description": "The observer lowers the compact vacuum nozzle toward the motionless nymph, stopping inches above it.",
+            "startOffsetSeconds": 0.0,
+            "durationSeconds": 5.0
+          },
+          {
+            "actionId": "scene_004_action_02",
+            "actorId": "lanternfly_nymph",
+            "verb": "twitch_antennae",
+            "targetId": null,
+            "manner": "subtly",
+            "description": "The nymph remains still except for a small twitch of its antennae.",
+            "startOffsetSeconds": 5.0,
+            "durationSeconds": 5.0
+          }
+        ],
+        "camera": {
+          "shotType": "macro close-up",
+          "angle": "just above ground level",
+          "movement": "slow lateral dolly",
+          "subject": "the nymph and descending nozzle",
+          "description": "Slow lateral dolly placing the nymph in sharp foreground and the descending nozzle as an enlarging dark shape behind it."
+        },
+        "look": {
+          "lighting": "Sunlight is partially blocked by the nozzle, casting a cool shadow over the insect while the planter remains warmly lit ahead.",
+          "mood": "Tense, ironic, and morally uneasy."
+        },
+        "continuityNotes": "Use the same brown-black nymph with cream speckles, six slender legs, short antennae, and dusty shell beside the established pebble; the observer retains medium-brown hands, short nails, and muted teal sleeve."
+      },
+      "transitionIn": {
+        "type": "fade",
+        "description": "Hold on the tiny nymph beneath the looming nozzle, then fade to black before contact."
+      }
+    }
+  ],
+  "timeline": {
+    "sceneOrder": [
+      "scene_001",
+      "scene_002",
+      "scene_003",
+      "scene_004"
+    ],
+    "narrationTrack": [
+      {
+        "sceneId": "scene_001",
+        "startSeconds": 0.25,
+        "gainDb": 0
+      },
+      {
+        "sceneId": "scene_002",
+        "startSeconds": 8.25,
+        "gainDb": 0
+      },
+      {
+        "sceneId": "scene_003",
+        "startSeconds": 18.25,
+        "gainDb": 0
+      },
+      {
+        "sceneId": "scene_004",
+        "startSeconds": 24.25,
+        "gainDb": 0
+      }
+    ],
+    "finalDurationSeconds": 34.0
+  }
+}
