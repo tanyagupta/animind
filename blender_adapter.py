@@ -7,10 +7,11 @@ This is a dual-mode program:
 * With ``--render``, it launches Blender in the background and runs this same
   file inside Blender to construct and render the selected scenes.
 
-The adapter can create a low-poly 3D animatic for any valid AniMind story by
-using procedural fallback assets and a semantic action library.  A separate
-Blender asset catalog may replace any fallback with a custom collection from a
-``.blend`` file without adding Blender-specific fields to the neutral JSON.
+The adapter prefers locally downloaded, license-tracked production assets and
+falls back to procedural geometry only when allowed by its asset policy.  A
+separate Blender asset catalog can reference BlenderKit/Blendkit collections,
+Poly Haven PBR textures and HDRIs, Mixamo FBX characters, glTF/GLB models, and
+OBJ models without adding renderer-specific fields to the neutral JSON.
 
 Examples
 --------
@@ -56,11 +57,13 @@ if str(SCRIPT_DIRECTORY) not in sys.path:
 
 EXPECTED_STORYBOARD_KIND = "animind.renderer-neutral-storyboard"
 EXPECTED_STORYBOARD_VERSION = "1.0"
-CATALOG_VERSION = "1.0"
+CATALOG_VERSION = "2.0"
+SUPPORTED_CATALOG_VERSIONS = {"1.0", "2.0"}
 STATE_VERSION = 1
-ADAPTER_VERSION = "1.1.1"
+ADAPTER_VERSION = "2.0.0"
 GROUND_SURFACE_Z = -0.02
 GROUND_CLEARANCE = 0.02
+SUPPORTED_ASSET_FORMATS = {"blend", "fbx", "gltf", "glb", "obj"}
 
 
 class BlenderAdapterError(RuntimeError):
@@ -75,6 +78,17 @@ class Quality:
     fps: int
     samples: int
     description: str
+
+
+@dataclass(frozen=True)
+class CameraProfile:
+    name: str
+    lens_mm: float
+    distance: float
+    aperture_fstop: float
+    focus_height: float
+    clip_start: float
+    height_factor: float
 
 
 MOVE_WORDS = {
@@ -102,8 +116,8 @@ def _program_arguments() -> List[str]:
 def parse_args(argv: Optional[Sequence[str]] = None) -> argparse.Namespace:
     parser = argparse.ArgumentParser(
         description=(
-            "Convert a renderer-neutral AniMind storyboard into a procedural "
-            "Blender animatic. Dry run is the default."
+            "Adapt a renderer-neutral AniMind storyboard into an asset-backed "
+            "or procedural Blender animation. Dry run is the default."
         )
     )
     parser.add_argument(
@@ -141,6 +155,27 @@ def parse_args(argv: Optional[Sequence[str]] = None) -> argparse.Namespace:
         "--asset-catalog",
         type=Path,
         help="Optional Blender-specific asset mapping JSON",
+    )
+    parser.add_argument(
+        "--strict-assets",
+        action="store_true",
+        help="Stop instead of using procedural geometry for an unmapped entity",
+    )
+    parser.add_argument(
+        "--camera-style",
+        choices=("auto", "macro", "close", "medium", "wide", "overhead", "handheld"),
+        default="auto",
+        help="Override storyboard shot selection while preserving its subject (default: auto)",
+    )
+    parser.add_argument(
+        "--no-motion-blur",
+        action="store_true",
+        help="Disable cinematic Eevee motion blur",
+    )
+    parser.add_argument(
+        "--no-depth-of-field",
+        action="store_true",
+        help="Disable camera depth of field",
     )
     parser.add_argument(
         "--blender",
@@ -419,35 +454,202 @@ def require_text(value: Any, label: str) -> str:
     return value
 
 
+def catalog_asset_path(catalog_path: Path, value: Any, label: str) -> Path:
+    text = require_text(value, label)
+    candidate = Path(text).expanduser()
+    if not candidate.is_absolute():
+        candidate = catalog_path.parent / candidate
+    return candidate.resolve()
+
+
+def asset_entry_enabled(entry: Mapping[str, Any]) -> bool:
+    return entry.get("enabled", True) is not False
+
+
+def asset_entry_format(entry: Mapping[str, Any]) -> str:
+    declared = entry.get("format")
+    if isinstance(declared, str) and declared.strip():
+        return declared.strip().lower().lstrip(".")
+    value = entry.get("file", entry.get("blendFile"))
+    if isinstance(value, str):
+        return Path(value).suffix.lower().lstrip(".") or "blend"
+    return ""
+
+
+def asset_entry_file(entry: Mapping[str, Any]) -> Any:
+    return entry.get("file", entry.get("blendFile"))
+
+
+def asset_source_label(entry: Mapping[str, Any]) -> str:
+    provider = str(entry.get("provider", "local")).strip() or "local"
+    asset_format = asset_entry_format(entry) or "asset"
+    return f"{provider} {asset_format.upper()}"
+
+
 def read_asset_catalog(path: Optional[Path]) -> Tuple[Dict[str, Any], Optional[Path]]:
     if path is None:
-        return {"schemaVersion": CATALOG_VERSION, "entities": {}, "actionAliases": {}}, None
+        return {
+            "schemaVersion": CATALOG_VERSION,
+            "fallbackPolicy": "warn",
+            "environment": {},
+            "entities": {},
+            "actionAliases": {},
+        }, None
     resolved = path.expanduser().resolve()
     catalog = read_json(resolved, "Asset catalog")
-    if catalog.get("schemaVersion") != CATALOG_VERSION:
+    version = catalog.get("schemaVersion")
+    if version not in SUPPORTED_CATALOG_VERSIONS:
         raise BlenderAdapterError(
             f"Unsupported asset catalog schemaVersion {catalog.get('schemaVersion')!r}; "
-            f"expected {CATALOG_VERSION!r}."
+            f"expected one of {sorted(SUPPORTED_CATALOG_VERSIONS)!r}."
         )
     entities = catalog.get("entities", {})
     aliases = catalog.get("actionAliases", {})
-    if not isinstance(entities, dict) or not isinstance(aliases, dict):
-        raise BlenderAdapterError("Asset catalog entities and actionAliases must be objects.")
+    environment = catalog.get("environment", {})
+    if not isinstance(entities, dict) or not isinstance(aliases, dict) or not isinstance(environment, dict):
+        raise BlenderAdapterError(
+            "Asset catalog entities, environment, and actionAliases must be objects."
+        )
+    fallback_policy = catalog.get("fallbackPolicy", "warn")
+    if fallback_policy not in {"procedural", "warn", "error"}:
+        raise BlenderAdapterError(
+            "Asset catalog fallbackPolicy must be procedural, warn, or error."
+        )
     for entity_id, entry in entities.items():
         if not isinstance(entry, dict):
             raise BlenderAdapterError(f"Asset catalog entry {entity_id!r} must be an object.")
-        blend_file = entry.get("blendFile")
-        collection = entry.get("collectionName")
-        if not isinstance(blend_file, str) or not blend_file.strip():
-            raise BlenderAdapterError(f"Asset {entity_id!r} must specify blendFile.")
-        if not isinstance(collection, str) or not collection.strip():
-            raise BlenderAdapterError(f"Asset {entity_id!r} must specify collectionName.")
-        asset_path = (resolved.parent / blend_file).resolve()
+        if not asset_entry_enabled(entry):
+            continue
+        asset_format = asset_entry_format(entry)
+        if asset_format not in SUPPORTED_ASSET_FORMATS:
+            raise BlenderAdapterError(
+                f"Asset {entity_id!r} format must be one of "
+                f"{sorted(SUPPORTED_ASSET_FORMATS)}."
+            )
+        if asset_format == "blend":
+            collection = entry.get("collectionName")
+            if not isinstance(collection, str) or not collection.strip():
+                raise BlenderAdapterError(
+                    f"Blender asset {entity_id!r} must specify collectionName."
+                )
+        asset_path = catalog_asset_path(
+            resolved, asset_entry_file(entry), f"assets.{entity_id}.file"
+        )
         if not asset_path.is_file():
             raise BlenderAdapterError(
                 f"Custom asset for {entity_id!r} was not found: {asset_path}"
             )
+        scale = entry.get("scale", 1.0)
+        if not isinstance(scale, (int, float)) or isinstance(scale, bool) or scale <= 0:
+            raise BlenderAdapterError(f"Asset {entity_id!r} scale must be positive.")
+
+    hdri = environment.get("hdri")
+    if isinstance(hdri, dict) and asset_entry_enabled(hdri):
+        hdri_path = catalog_asset_path(resolved, hdri.get("file"), "environment.hdri.file")
+        if not hdri_path.is_file():
+            raise BlenderAdapterError(f"Environment HDRI was not found: {hdri_path}")
+    ground = environment.get("groundMaterial")
+    if isinstance(ground, dict) and asset_entry_enabled(ground):
+        texture_keys = ("baseColor", "roughness", "normal", "height", "metallic")
+        supplied = 0
+        for key in texture_keys:
+            value = ground.get(key)
+            if value is None:
+                continue
+            supplied += 1
+            texture_path = catalog_asset_path(
+                resolved, value, f"environment.groundMaterial.{key}"
+            )
+            if not texture_path.is_file():
+                raise BlenderAdapterError(
+                    f"Ground material texture {key!r} was not found: {texture_path}"
+                )
+        if supplied == 0:
+            raise BlenderAdapterError(
+                "Enabled environment.groundMaterial must provide at least one texture map."
+            )
     return catalog, resolved
+
+
+def asset_catalog_fingerprint(
+    catalog: Mapping[str, Any],
+    catalog_path: Optional[Path],
+) -> str:
+    digest = hashlib.sha256(
+        json.dumps(catalog, ensure_ascii=False, sort_keys=True, separators=(",", ":")).encode(
+            "utf-8"
+        )
+    )
+    if catalog_path is None:
+        return digest.hexdigest()
+    referenced_paths: List[Path] = []
+    entities = catalog.get("entities", {})
+    if isinstance(entities, dict):
+        for entry in entities.values():
+            if isinstance(entry, dict) and asset_entry_enabled(entry):
+                referenced_paths.append(
+                    catalog_asset_path(catalog_path, asset_entry_file(entry), "asset file")
+                )
+    environment = catalog.get("environment", {})
+    if isinstance(environment, dict):
+        hdri = environment.get("hdri")
+        if isinstance(hdri, dict) and asset_entry_enabled(hdri):
+            referenced_paths.append(
+                catalog_asset_path(catalog_path, hdri.get("file"), "environment.hdri.file")
+            )
+        ground = environment.get("groundMaterial")
+        if isinstance(ground, dict) and asset_entry_enabled(ground):
+            for key in ("baseColor", "roughness", "normal", "height", "metallic"):
+                if ground.get(key) is not None:
+                    referenced_paths.append(
+                        catalog_asset_path(
+                            catalog_path,
+                            ground.get(key),
+                            f"environment.groundMaterial.{key}",
+                        )
+                    )
+    for asset_path in sorted(set(referenced_paths), key=lambda item: str(item)):
+        stat = asset_path.stat()
+        digest.update(str(asset_path).encode("utf-8"))
+        digest.update(str(stat.st_size).encode("ascii"))
+        digest.update(str(stat.st_mtime_ns).encode("ascii"))
+    return digest.hexdigest()
+
+
+def asset_source_records(catalog: Mapping[str, Any]) -> List[Dict[str, str]]:
+    """Return enabled third-party source metadata for the execution record."""
+    records: List[Dict[str, str]] = []
+
+    def add(role: str, name: str, entry: Mapping[str, Any]) -> None:
+        if not asset_entry_enabled(entry):
+            return
+        record = {
+            "role": role,
+            "name": name,
+            "provider": str(entry.get("provider", "local")),
+        }
+        for source_key, output_key in (
+            ("assetId", "assetId"),
+            ("assetPage", "assetPage"),
+            ("license", "license"),
+        ):
+            value = entry.get(source_key)
+            if value is not None:
+                record[output_key] = str(value)
+        records.append(record)
+
+    entities = catalog.get("entities", {})
+    if isinstance(entities, dict):
+        for entity_id, entry in sorted(entities.items()):
+            if isinstance(entry, dict):
+                add("entity", str(entity_id), entry)
+    environment = catalog.get("environment", {})
+    if isinstance(environment, dict):
+        for name in ("hdri", "groundMaterial"):
+            entry = environment.get(name)
+            if isinstance(entry, dict):
+                add("environment", name, entry)
+    return records
 
 
 def choose_scenes(
@@ -484,7 +686,7 @@ def quality_for(
             width=max(320, width // 2),
             height=max(180, height // 2),
             fps=12,
-            samples=8,
+            samples=16,
             description="fast half-resolution Eevee animatic",
         )
     elif name == "preview":
@@ -492,18 +694,21 @@ def quality_for(
             name="preview",
             width=width,
             height=height,
-            fps=15,
-            samples=16,
-            description="full-resolution Eevee preview",
+            fps=source_fps,
+            samples=64,
+            description="full-resolution cinematic Eevee preview",
         )
     else:
+        scale = max(1.0, 1920.0 / max(width, height))
+        final_width = max(2, int(round(width * scale / 2.0)) * 2)
+        final_height = max(2, int(round(height * scale / 2.0)) * 2)
         quality = Quality(
             name="final",
-            width=width,
-            height=height,
+            width=final_width,
+            height=final_height,
             fps=source_fps,
-            samples=32,
-            description="full-resolution, full-frame-rate Eevee render",
+            samples=128,
+            description="high-resolution cinematic Eevee render",
         )
     if fps_override is not None:
         if not 6 <= fps_override <= 60:
@@ -615,6 +820,10 @@ def print_plan(
     quality: Quality,
     asset_catalog: Mapping[str, Any],
     output_dir: Path,
+    camera_style: str = "auto",
+    motion_blur: bool = True,
+    depth_of_field: bool = True,
+    strict_assets: bool = False,
 ) -> None:
     project = require_mapping(storyboard.get("project"), "project")
     entities = entity_catalog(storyboard)
@@ -627,6 +836,20 @@ def print_plan(
         synthetic = synthetic_scene_entity(scene)
         if synthetic["entityId"] in used_ids and synthetic["entityId"] not in entities:
             entities[synthetic["entityId"]] = synthetic
+    if strict_assets or asset_catalog.get("fallbackPolicy") == "error":
+        missing = sorted(
+            entity_id
+            for entity_id in used_ids
+            if not (
+                isinstance(overrides.get(entity_id), dict)
+                and asset_entry_enabled(overrides[entity_id])
+            )
+        )
+        if missing:
+            raise BlenderAdapterError(
+                "Strict asset validation found no enabled production mapping for: "
+                + ", ".join(missing)
+            )
 
     print(f"Project: {project.get('title') or 'Untitled'}")
     print(
@@ -641,10 +864,34 @@ def print_plan(
     print("Assets:")
     for entity_id in sorted(used_ids):
         entity = entities.get(entity_id, {})
-        source = "custom .blend collection" if entity_id in overrides else "procedural fallback"
+        entry = overrides.get(entity_id)
+        if isinstance(entry, dict) and asset_entry_enabled(entry):
+            source = asset_source_label(entry)
+        elif isinstance(entry, dict):
+            source = "procedural fallback (catalog entry disabled)"
+        else:
+            source = "procedural fallback"
         print(
             f"  {entity_id}: {entity.get('entityType', 'object')} - {source}"
         )
+    environment = require_mapping(asset_catalog.get("environment", {}), "asset catalog environment")
+    hdri = environment.get("hdri")
+    ground = environment.get("groundMaterial")
+    hdri_source = (
+        asset_source_label(hdri)
+        if isinstance(hdri, dict) and asset_entry_enabled(hdri)
+        else "procedural world lighting"
+    )
+    ground_source = (
+        str(ground.get("provider", "local PBR")) + " PBR"
+        if isinstance(ground, dict) and asset_entry_enabled(ground)
+        else "procedural material"
+    )
+    print(f"Environment: {hdri_source}; ground: {ground_source}")
+    print(
+        f"Camera: {camera_style}; depth of field: {'on' if depth_of_field else 'off'}; "
+        f"motion blur: {'on' if motion_blur else 'off'}"
+    )
     print("Actions:")
     for scene in scenes:
         visual = require_mapping(scene.get("visual"), f"{scene.get('sceneId')}.visual")
@@ -708,6 +955,13 @@ def build_blender_command(
         command.extend(["--scene", args.scene])
     if args.asset_catalog:
         command.extend(["--asset-catalog", str(args.asset_catalog.expanduser().resolve())])
+    if args.strict_assets:
+        command.append("--strict-assets")
+    command.extend(["--camera-style", args.camera_style])
+    if args.no_motion_blur:
+        command.append("--no-motion-blur")
+    if args.no_depth_of_field:
+        command.append("--no-depth-of-field")
     if args.fps is not None:
         command.extend(["--fps", str(args.fps)])
     if args.overwrite:
@@ -777,6 +1031,143 @@ def create_material(
         if "Metallic" in node.inputs:
             node.inputs["Metallic"].default_value = metallic
     return material
+
+
+def load_blender_image(bpy: Any, path: Path, non_color: bool = False) -> Any:
+    try:
+        image = bpy.data.images.load(str(path), check_existing=True)
+    except Exception as exc:
+        raise BlenderAdapterError(f"Blender could not load texture {path}: {exc}") from exc
+    if non_color:
+        try:
+            image.colorspace_settings.name = "Non-Color"
+        except (TypeError, ValueError):
+            pass
+    return image
+
+
+def create_pbr_material(
+    bpy: Any,
+    name: str,
+    specification: Mapping[str, Any],
+    catalog_path: Path,
+    fallback_color: Tuple[float, float, float, float],
+) -> Any:
+    """Build a Principled material from local Poly Haven-style texture maps."""
+    material = bpy.data.materials.new(name=name)
+    material.diffuse_color = fallback_color
+    material.use_nodes = True
+    nodes = material.node_tree.nodes
+    links = material.node_tree.links
+    nodes.clear()
+    output = nodes.new("ShaderNodeOutputMaterial")
+    output.location = (700, 0)
+    shader = nodes.new("ShaderNodeBsdfPrincipled")
+    shader.location = (420, 0)
+    links.new(shader.outputs["BSDF"], output.inputs["Surface"])
+    if "Base Color" in shader.inputs:
+        shader.inputs["Base Color"].default_value = fallback_color
+    if "Roughness" in shader.inputs:
+        shader.inputs["Roughness"].default_value = 0.86
+
+    coordinates = nodes.new("ShaderNodeTexCoord")
+    coordinates.location = (-900, 0)
+    mapping = nodes.new("ShaderNodeMapping")
+    mapping.location = (-700, 0)
+    texture_scale = float(specification.get("textureScale", 3.0))
+    mapping.inputs["Scale"].default_value = (texture_scale,) * 3
+    links.new(coordinates.outputs["Generated"], mapping.inputs["Vector"])
+
+    positions = {
+        "baseColor": (-430, 240),
+        "roughness": (-430, 70),
+        "metallic": (-430, -80),
+        "normal": (-430, -250),
+        "height": (-430, -430),
+    }
+    texture_nodes: Dict[str, Any] = {}
+    for key, location in positions.items():
+        value = specification.get(key)
+        if value is None:
+            continue
+        texture_path = catalog_asset_path(
+            catalog_path, value, f"environment.groundMaterial.{key}"
+        )
+        texture = nodes.new("ShaderNodeTexImage")
+        texture.name = f"{name}_{key}"
+        texture.label = key
+        texture.location = location
+        texture.extension = "REPEAT"
+        texture.image = load_blender_image(bpy, texture_path, non_color=key != "baseColor")
+        links.new(mapping.outputs["Vector"], texture.inputs["Vector"])
+        texture_nodes[key] = texture
+
+    if "baseColor" in texture_nodes and "Base Color" in shader.inputs:
+        links.new(texture_nodes["baseColor"].outputs["Color"], shader.inputs["Base Color"])
+    if "roughness" in texture_nodes and "Roughness" in shader.inputs:
+        links.new(texture_nodes["roughness"].outputs["Color"], shader.inputs["Roughness"])
+    if "metallic" in texture_nodes and "Metallic" in shader.inputs:
+        links.new(texture_nodes["metallic"].outputs["Color"], shader.inputs["Metallic"])
+
+    normal_output = None
+    if "normal" in texture_nodes:
+        normal_map = nodes.new("ShaderNodeNormalMap")
+        normal_map.location = (160, -240)
+        normal_map.inputs["Strength"].default_value = float(
+            specification.get("normalStrength", 0.65)
+        )
+        links.new(texture_nodes["normal"].outputs["Color"], normal_map.inputs["Color"])
+        normal_output = normal_map.outputs["Normal"]
+    if "height" in texture_nodes:
+        bump = nodes.new("ShaderNodeBump")
+        bump.location = (180, -420)
+        bump.inputs["Strength"].default_value = float(
+            specification.get("heightStrength", 0.28)
+        )
+        bump.inputs["Distance"].default_value = float(
+            specification.get("heightDistance", 0.08)
+        )
+        links.new(texture_nodes["height"].outputs["Color"], bump.inputs["Height"])
+        if normal_output is not None:
+            links.new(normal_output, bump.inputs["Normal"])
+        normal_output = bump.outputs["Normal"]
+    if normal_output is not None and "Normal" in shader.inputs:
+        links.new(normal_output, shader.inputs["Normal"])
+    return material
+
+
+def configure_hdri_world(
+    bpy: Any,
+    specification: Mapping[str, Any],
+    catalog_path: Path,
+) -> bool:
+    if not asset_entry_enabled(specification):
+        return False
+    hdri_path = catalog_asset_path(catalog_path, specification.get("file"), "environment.hdri.file")
+    world = bpy.context.scene.world
+    world.use_nodes = True
+    nodes = world.node_tree.nodes
+    links = world.node_tree.links
+    nodes.clear()
+    output = nodes.new("ShaderNodeOutputWorld")
+    output.location = (520, 0)
+    background = nodes.new("ShaderNodeBackground")
+    background.location = (280, 0)
+    background.inputs["Strength"].default_value = float(specification.get("strength", 0.65))
+    environment = nodes.new("ShaderNodeTexEnvironment")
+    environment.location = (-100, 0)
+    environment.image = load_blender_image(bpy, hdri_path)
+    coordinates = nodes.new("ShaderNodeTexCoord")
+    coordinates.location = (-650, 0)
+    mapping = nodes.new("ShaderNodeMapping")
+    mapping.location = (-420, 0)
+    rotation = math.radians(float(specification.get("rotationDegrees", 0.0)))
+    mapping.inputs["Rotation"].default_value[2] = rotation
+    links.new(coordinates.outputs["Generated"], mapping.inputs["Vector"])
+    links.new(mapping.outputs["Vector"], environment.inputs["Vector"])
+    links.new(environment.outputs["Color"], background.inputs["Color"])
+    links.new(background.outputs["Background"], output.inputs["Surface"])
+    return True
 
 
 def assign_material(obj: Any, material: Any) -> None:
@@ -1050,7 +1441,9 @@ def load_custom_collection(
     entry: Mapping[str, Any],
     catalog_path: Path,
 ) -> Any:
-    blend_path = (catalog_path.parent / str(entry["blendFile"])).resolve()
+    blend_path = catalog_asset_path(
+        catalog_path, asset_entry_file(entry), f"assets.{entity_id}.file"
+    )
     collection_name = str(entry["collectionName"])
     with bpy.data.libraries.load(str(blend_path), link=False) as (available, requested):
         if collection_name not in available.collections:
@@ -1062,14 +1455,128 @@ def load_custom_collection(
     root = add_empty(bpy, entity_id)
     root.instance_type = "COLLECTION"
     root.instance_collection = loaded
-    scale = entry.get("scale", 1.0)
-    if not isinstance(scale, (int, float)) or scale <= 0:
-        raise BlenderAdapterError(f"Custom asset {entity_id!r} scale must be positive.")
-    root.scale = (float(scale),) * 3
+    apply_asset_transform(root, entry)
+    annotate_asset_root(root, entry)
+    configure_imported_animation(root, entry)
+    return root
+
+
+def apply_asset_transform(root: Any, entry: Mapping[str, Any]) -> None:
+    scale = float(entry.get("scale", 1.0))
+    root.scale = (scale,) * 3
     rotation = entry.get("rotationDegrees", [0, 0, 0])
     if isinstance(rotation, list) and len(rotation) == 3:
         root.rotation_euler = tuple(math.radians(float(item)) for item in rotation)
+    offset = entry.get("locationOffset", [0, 0, 0])
+    if isinstance(offset, list) and len(offset) == 3:
+        root["animind_location_offset"] = [float(item) for item in offset]
+
+
+def annotate_asset_root(root: Any, entry: Mapping[str, Any]) -> None:
+    root["animind_asset_provider"] = str(entry.get("provider", "local"))
+    root["animind_asset_format"] = asset_entry_format(entry)
+    if entry.get("assetId") is not None:
+        root["animind_asset_id"] = str(entry.get("assetId"))
+    if entry.get("license") is not None:
+        root["animind_asset_license"] = str(entry.get("license"))
+
+
+def configure_imported_animation(root: Any, entry: Mapping[str, Any]) -> None:
+    animation = entry.get("animation", {})
+    if not isinstance(animation, dict):
+        return
+    loop = animation.get("loop", False) is True
+    objects = [root, *_descendants(root)]
+    instance_collection = getattr(root, "instance_collection", None)
+    if instance_collection is not None:
+        objects.extend(list(getattr(instance_collection, "all_objects", [])))
+    for obj in objects:
+        animation_data = getattr(obj, "animation_data", None)
+        action = getattr(animation_data, "action", None)
+        if action is None:
+            continue
+        if loop:
+            for curve in getattr(action, "fcurves", []):
+                if not any(modifier.type == "CYCLES" for modifier in curve.modifiers):
+                    curve.modifiers.new(type="CYCLES")
+        obj["animind_imported_animation"] = True
+
+
+def import_external_asset(
+    bpy: Any,
+    entity_id: str,
+    entry: Mapping[str, Any],
+    catalog_path: Path,
+) -> Any:
+    asset_path = catalog_asset_path(
+        catalog_path, asset_entry_file(entry), f"assets.{entity_id}.file"
+    )
+    asset_format = asset_entry_format(entry)
+    before = set(bpy.data.objects)
+    try:
+        if asset_format in {"gltf", "glb"}:
+            bpy.ops.import_scene.gltf(filepath=str(asset_path))
+        elif asset_format == "fbx":
+            imported = False
+            try:
+                bpy.ops.wm.fbx_import(filepath=str(asset_path))
+                imported = True
+            except (AttributeError, RuntimeError, TypeError, ValueError):
+                pass
+            if not imported:
+                bpy.ops.import_scene.fbx(filepath=str(asset_path))
+        elif asset_format == "obj":
+            imported = False
+            try:
+                bpy.ops.wm.obj_import(filepath=str(asset_path))
+                imported = True
+            except (AttributeError, RuntimeError, TypeError, ValueError):
+                pass
+            if not imported:
+                bpy.ops.import_scene.obj(filepath=str(asset_path))
+        else:
+            raise BlenderAdapterError(
+                f"Unsupported external asset format {asset_format!r} for {entity_id!r}."
+            )
+    except Exception as exc:
+        raise BlenderAdapterError(
+            f"Blender could not import {asset_path.name} for {entity_id!r}: {exc}"
+        ) from exc
+
+    imported_objects = [obj for obj in bpy.data.objects if obj not in before]
+    keep_scene_objects = entry.get("keepImportedLightsAndCameras", False) is True
+    if not keep_scene_objects:
+        for obj in list(imported_objects):
+            if getattr(obj, "type", None) in {"LIGHT", "CAMERA"}:
+                bpy.data.objects.remove(obj, do_unlink=True)
+                imported_objects.remove(obj)
+    if not imported_objects:
+        raise BlenderAdapterError(
+            f"Importing {asset_path.name} created no usable objects for {entity_id!r}."
+        )
+
+    root = add_empty(bpy, entity_id)
+    imported_set = set(imported_objects)
+    for obj in imported_objects:
+        if obj.parent not in imported_set:
+            world_matrix = obj.matrix_world.copy()
+            obj.parent = root
+            obj.matrix_world = world_matrix
+    apply_asset_transform(root, entry)
+    annotate_asset_root(root, entry)
+    configure_imported_animation(root, entry)
     return root
+
+
+def load_catalog_asset(
+    bpy: Any,
+    entity_id: str,
+    entry: Mapping[str, Any],
+    catalog_path: Path,
+) -> Any:
+    if asset_entry_format(entry) == "blend":
+        return load_custom_collection(bpy, entity_id, entry, catalog_path)
+    return import_external_asset(bpy, entity_id, entry, catalog_path)
 
 
 def create_entity_object(
@@ -1078,12 +1585,25 @@ def create_entity_object(
     entity: Mapping[str, Any],
     catalog: Mapping[str, Any],
     catalog_path: Optional[Path],
+    strict_assets: bool = False,
 ) -> Any:
     entity_id = str(entity["entityId"])
     entries = require_mapping(catalog.get("entities", {}), "asset catalog entities")
     entry = entries.get(entity_id)
-    if isinstance(entry, dict) and catalog_path is not None:
-        return load_custom_collection(bpy, entity_id, entry, catalog_path)
+    if (
+        isinstance(entry, dict)
+        and asset_entry_enabled(entry)
+        and catalog_path is not None
+    ):
+        return load_catalog_asset(bpy, entity_id, entry, catalog_path)
+    fallback_policy = str(catalog.get("fallbackPolicy", "warn"))
+    if strict_assets or fallback_policy == "error":
+        raise BlenderAdapterError(
+            f"No enabled production asset is mapped for {entity_id!r}. "
+            "Add it to --asset-catalog or disable --strict-assets."
+        )
+    if fallback_policy == "warn":
+        print(f"Warning: using procedural fallback for {entity_id}")
     entity_type = str(entity.get("entityType", "object")).lower()
     description = f"{entity.get('name', '')} {entity.get('visualDescription', '')}".lower()
     if entity_type in {"person", "human", "character"}:
@@ -1159,6 +1679,8 @@ def create_location(
     Vector: Any,
     storyboard: Mapping[str, Any],
     scene: Mapping[str, Any],
+    catalog: Mapping[str, Any],
+    catalog_path: Optional[Path],
 ) -> None:
     visual = require_mapping(scene.get("visual"), "scene.visual")
     description = str(visual.get("settingDescription", "")).lower()
@@ -1176,8 +1698,26 @@ def create_location(
         ground_color = (0.62, 0.48, 0.30, 1.0)
     else:
         ground_color = (0.24, 0.27, 0.31, 1.0)
-    ground = create_material(bpy, "ground_material", ground_color, 0.92)
-    add_cube(bpy, "ground", (0, 0, -0.14), (8.0, 8.0, 0.12), ground, root, 0.0)
+    environment = require_mapping(catalog.get("environment", {}), "asset catalog environment")
+    ground_specification = environment.get("groundMaterial")
+    if (
+        isinstance(ground_specification, dict)
+        and asset_entry_enabled(ground_specification)
+        and catalog_path is not None
+    ):
+        ground = create_pbr_material(
+            bpy,
+            "ground_material",
+            ground_specification,
+            catalog_path,
+            ground_color,
+        )
+    else:
+        ground = create_material(bpy, "ground_material", ground_color, 0.92)
+    ground_object = add_cube(
+        bpy, "ground", (0, 0, -0.14), (8.0, 8.0, 0.12), ground, root, 0.0
+    )
+    ground_object["animind_ground_surface_z"] = GROUND_SURFACE_Z
 
     if "terrace" in description or "planter" in description:
         planter = create_material(bpy, "planter_material", (0.36, 0.22, 0.13, 1.0), 0.78)
@@ -1203,6 +1743,8 @@ def configure_world_and_lights(
     bpy: Any,
     scene: Mapping[str, Any],
     focus: Tuple[float, float, float],
+    catalog: Mapping[str, Any],
+    catalog_path: Optional[Path],
 ) -> None:
     visual = require_mapping(scene.get("visual"), "scene.visual")
     look = require_mapping(visual.get("look"), "scene.visual.look")
@@ -1216,17 +1758,28 @@ def configure_world_and_lights(
     else:
         key_color = (0.92, 0.95, 1.0)
         world_color = (0.035, 0.045, 0.060, 1.0)
-    world = bpy.context.scene.world
-    world.use_nodes = True
-    background = world.node_tree.nodes.get("Background")
-    if background:
-        background.inputs["Color"].default_value = world_color
-        background.inputs["Strength"].default_value = 0.38
+    environment = require_mapping(catalog.get("environment", {}), "asset catalog environment")
+    hdri_specification = environment.get("hdri")
+    hdri_enabled = (
+        isinstance(hdri_specification, dict)
+        and asset_entry_enabled(hdri_specification)
+        and catalog_path is not None
+        and configure_hdri_world(bpy, hdri_specification, catalog_path)
+    )
+    if not hdri_enabled:
+        world = bpy.context.scene.world
+        world.use_nodes = True
+        background = world.node_tree.nodes.get("Background")
+        if background:
+            background.inputs["Color"].default_value = world_color
+            background.inputs["Strength"].default_value = 0.38
+
+    energy_scale = 0.48 if hdri_enabled else 1.0
 
     bpy.ops.object.light_add(type="AREA", location=(focus[0] - 3.0, focus[1] - 4.0, focus[2] + 6.0))
     key = bpy.context.object
     key.name = "Key light"
-    key.data.energy = 950
+    key.data.energy = 950 * energy_scale
     key.data.shape = "DISK"
     key.data.size = 5.0
     key.data.color = key_color
@@ -1234,27 +1787,64 @@ def configure_world_and_lights(
     bpy.ops.object.light_add(type="AREA", location=(focus[0] + 4.0, focus[1] + 2.5, focus[2] + 3.0))
     fill = bpy.context.object
     fill.name = "Fill light"
-    fill.data.energy = 420
+    fill.data.energy = 420 * energy_scale
     fill.data.size = 4.0
     fill.data.color = (0.48, 0.64, 1.0)
 
     bpy.ops.object.light_add(type="AREA", location=(focus[0] + 1.0, focus[1] + 4.0, focus[2] + 5.0))
     rim = bpy.context.object
     rim.name = "Rim light"
-    rim.data.energy = 650
+    rim.data.energy = 650 * energy_scale
     rim.data.size = 3.0
     rim.data.color = (1.0, 0.58, 0.34)
 
 
-def camera_distance(shot: str) -> float:
-    lowered = shot.lower()
-    if "extreme" in lowered or "macro" in lowered:
-        return 3.1
-    if "close" in lowered:
-        return 4.5
-    if "medium" in lowered:
-        return 7.0
-    return 10.5
+def camera_profile(camera_plan: Mapping[str, Any], override: str = "auto") -> CameraProfile:
+    description = " ".join(
+        str(camera_plan.get(key, ""))
+        for key in ("shotType", "angle", "movement", "description")
+    ).lower()
+    if override != "auto":
+        style = override
+    elif any(word in description for word in ("overhead", "top-down", "bird's-eye", "birds-eye")):
+        style = "overhead"
+    elif "macro" in description or "extreme close" in description:
+        style = "macro"
+    elif "close" in description:
+        style = "close"
+    elif "medium" in description:
+        style = "medium"
+    elif "handheld" in description:
+        style = "handheld"
+    else:
+        style = "wide"
+    profiles = {
+        "macro": CameraProfile("macro", 105.0, 2.45, 3.2, 0.20, 0.01, 0.12),
+        "close": CameraProfile("close", 70.0, 4.20, 3.5, 0.55, 0.02, 0.30),
+        "medium": CameraProfile("medium", 50.0, 6.70, 4.5, 0.90, 0.04, 0.46),
+        "wide": CameraProfile("wide", 32.0, 10.20, 5.6, 1.00, 0.08, 0.64),
+        "overhead": CameraProfile("overhead", 45.0, 7.20, 5.0, 0.55, 0.04, 1.00),
+        "handheld": CameraProfile("handheld", 55.0, 4.80, 3.8, 0.75, 0.02, 0.36),
+    }
+    return profiles[style]
+
+
+def add_handheld_camera_motion(camera_rig: Any) -> None:
+    animation_data = getattr(camera_rig, "animation_data", None)
+    action = getattr(animation_data, "action", None)
+    if action is None:
+        return
+    curves = getattr(action, "fcurves", None)
+    if curves is None:
+        return
+    for index in range(3):
+        curve = curves.find("location", index=index)
+        if curve is None:
+            continue
+        modifier = curve.modifiers.new(type="NOISE")
+        modifier.scale = 11.0
+        modifier.strength = 0.022 if index < 2 else 0.012
+        modifier.phase = float(index * 17)
 
 
 def create_camera(
@@ -1263,6 +1853,8 @@ def create_camera(
     scene_value: Mapping[str, Any],
     roots: Mapping[str, Any],
     fps: int,
+    camera_style: str = "auto",
+    use_depth_of_field: bool = True,
 ) -> Any:
     visual = require_mapping(scene_value.get("visual"), "scene.visual")
     camera_plan = require_mapping(visual.get("camera"), "scene.visual.camera")
@@ -1280,27 +1872,46 @@ def create_camera(
         subject_id = next(iter(roots), None)
     subject = roots.get(subject_id) if subject_id else None
     base = subject.location.copy() if subject is not None else Vector((0, 0, 0))
-    focus_height = 0.35 if "macro" in str(camera_plan.get("shotType", "")).lower() else 0.9
+    profile = camera_profile(camera_plan, camera_style)
     focus = add_empty(bpy, "camera_focus")
     if subject is not None:
         focus.parent = subject
-        focus.location = (0, 0, focus_height)
+        if hasattr(focus, "inherit_scale"):
+            focus.inherit_scale = "NONE"
+        focus.location = (0, 0, profile.focus_height)
     else:
-        focus.location = (base.x, base.y, focus_height)
+        focus.location = (base.x, base.y, profile.focus_height)
 
-    distance = camera_distance(str(camera_plan.get("shotType", "wide")))
     angle = str(camera_plan.get("angle", "eye-level")).lower()
-    z_factor = 0.18 if "low" in angle or "ground" in angle else 0.75 if "high" in angle else 0.42
-    bpy.ops.object.camera_add(
-        location=(base.x - distance * 0.72, base.y - distance * 0.78, base.z + distance * z_factor)
-    )
+    height_factor = profile.height_factor
+    if "low" in angle or "ground" in angle:
+        height_factor = min(height_factor, 0.16)
+    elif "high" in angle:
+        height_factor = max(height_factor, 0.72)
+    if profile.name == "overhead":
+        local_camera_position = Vector((0.0, -profile.distance * 0.12, profile.distance))
+    else:
+        local_camera_position = Vector(
+            (-profile.distance * 0.72, -profile.distance * 0.78, profile.distance * height_factor)
+        )
+
+    camera_rig = add_empty(bpy, "camera_rig")
+    camera_rig.location = base
+    bpy.ops.object.camera_add(location=(0, 0, 0))
     camera = bpy.context.object
     camera.name = "Story camera"
+    camera.parent = camera_rig
+    camera.location = local_camera_position
     bpy.context.scene.camera = camera
-    camera.data.lens = 68 if distance <= 3.5 else 52 if distance <= 5 else 38
-    camera.data.dof.use_dof = True
+    camera.data.lens = profile.lens_mm
+    camera.data.sensor_width = 36.0
+    camera.data.clip_start = profile.clip_start
+    camera.data.clip_end = 1000.0
+    camera.data.dof.use_dof = use_depth_of_field
     camera.data.dof.focus_object = focus
-    camera.data.dof.aperture_fstop = 2.8 if distance <= 5 else 4.5
+    camera.data.dof.aperture_fstop = profile.aperture_fstop
+    if hasattr(camera.data.dof, "aperture_blades"):
+        camera.data.dof.aperture_blades = 7
     constraint = camera.constraints.new(type="TRACK_TO")
     constraint.target = focus
     constraint.track_axis = "TRACK_NEGATIVE_Z"
@@ -1309,29 +1920,29 @@ def create_camera(
     start_frame = 1
     end_frame = max(2, int(round(float(scene_value.get("durationSeconds", 1)) * fps)))
     movement = str(camera_plan.get("movement", "static")).lower()
+    camera_rig.keyframe_insert(data_path="location", frame=start_frame)
+    camera_rig.keyframe_insert(data_path="rotation_euler", frame=start_frame)
     camera.keyframe_insert(data_path="location", frame=start_frame)
     initial = camera.location.copy()
     if "push" in movement:
-        camera.location = base + (initial - base) * 0.76
+        camera.location = initial * 0.76
     elif "track" in movement:
-        camera.location.x += 1.6
+        camera_rig.location.x += 1.6
     elif "orbit" in movement:
-        offset = initial - base
-        angle_radians = math.radians(28)
-        camera.location = base + Vector(
-            (
-                offset.x * math.cos(angle_radians) - offset.y * math.sin(angle_radians),
-                offset.x * math.sin(angle_radians) + offset.y * math.cos(angle_radians),
-                offset.z,
-            )
-        )
+        camera_rig.rotation_euler[2] = math.radians(-14)
+        camera_rig.keyframe_insert(data_path="rotation_euler", frame=start_frame)
+        camera_rig.rotation_euler[2] = math.radians(14)
     elif "lateral" in movement or "dolly" in movement:
-        camera.location.x += 1.8
+        camera_rig.location.x += 1.8
     elif "lower" in movement:
-        camera.location.z = max(0.35, camera.location.z - 1.8)
-    else:
-        camera.location.x += 0.25
+        camera.location.z = max(profile.clip_start * 8.0, camera.location.z - 1.2)
+    camera_rig.keyframe_insert(data_path="location", frame=end_frame)
+    camera_rig.keyframe_insert(data_path="rotation_euler", frame=end_frame)
     camera.keyframe_insert(data_path="location", frame=end_frame)
+    set_smooth_interpolation((camera_rig, camera))
+    if profile.name == "handheld" or "handheld" in movement:
+        add_handheld_camera_motion(camera_rig)
+    camera["animind_camera_profile"] = profile.name
     return camera
 
 
@@ -1373,7 +1984,7 @@ def object_world_min_z(bpy: Any, Vector: Any, root: Any) -> float:
 
 
 def register_ground_clearance(bpy: Any, Vector: Any, root: Any) -> None:
-    """Lift intersecting geometry and retain the lowest safe root height."""
+    """Lift intersecting geometry and add a non-penetrating world-Z constraint."""
     lowest = object_world_min_z(bpy, Vector, root)
     relative_lowest = lowest - float(root.location.z)
     minimum_root_z = GROUND_SURFACE_Z + GROUND_CLEARANCE - relative_lowest
@@ -1382,6 +1993,13 @@ def register_ground_clearance(bpy: Any, Vector: Any, root: Any) -> None:
         bpy.context.view_layer.update()
     root["animind_min_root_z"] = float(minimum_root_z)
     root["animind_rest_z"] = float(root.location.z)
+    constraint = root.constraints.new(type="LIMIT_LOCATION")
+    constraint.name = "AniMind ground contact"
+    constraint.use_min_z = True
+    constraint.min_z = float(minimum_root_z)
+    constraint.owner_space = "WORLD"
+    if hasattr(constraint, "use_transform_limit"):
+        constraint.use_transform_limit = True
 
 
 def minimum_root_z(obj: Any) -> float:
@@ -1506,17 +2124,51 @@ def animate_action(
 
 
 def set_smooth_interpolation(roots: Iterable[Any]) -> None:
+    visited = set()
     for root in roots:
-        animation_data = getattr(root, "animation_data", None)
-        action = getattr(animation_data, "action", None)
-        if action is None:
+        objects = [root, *_descendants(root)]
+        instance_collection = getattr(root, "instance_collection", None)
+        if instance_collection is not None:
+            objects.extend(list(getattr(instance_collection, "all_objects", [])))
+        for obj in objects:
+            pointer = obj.as_pointer() if hasattr(obj, "as_pointer") else id(obj)
+            if pointer in visited:
+                continue
+            visited.add(pointer)
+            animation_data = getattr(obj, "animation_data", None)
+            action = getattr(animation_data, "action", None)
+            if action is None:
+                continue
+            for curve in getattr(action, "fcurves", []):
+                for point in curve.keyframe_points:
+                    point.interpolation = "BEZIER"
+                    if hasattr(point, "handle_left_type"):
+                        point.handle_left_type = "AUTO_CLAMPED"
+                    if hasattr(point, "handle_right_type"):
+                        point.handle_right_type = "AUTO_CLAMPED"
+
+
+def set_supported_property(owner: Any, names: Sequence[str], value: Any) -> bool:
+    if owner is None:
+        return False
+    for name in names:
+        if not hasattr(owner, name):
             continue
-        for curve in getattr(action, "fcurves", []):
-            for point in curve.keyframe_points:
-                point.interpolation = "BEZIER"
+        try:
+            setattr(owner, name, value)
+            return True
+        except (AttributeError, TypeError, ValueError):
+            continue
+    return False
 
 
-def configure_render(bpy: Any, quality: Quality, output_path: Path, frame_end: int) -> None:
+def configure_render(
+    bpy: Any,
+    quality: Quality,
+    output_path: Path,
+    frame_end: int,
+    use_motion_blur: bool = True,
+) -> None:
     scene = bpy.context.scene
     engine_set = False
     for engine in ("BLENDER_EEVEE_NEXT", "BLENDER_EEVEE"):
@@ -1539,14 +2191,34 @@ def configure_render(bpy: Any, quality: Quality, output_path: Path, frame_end: i
     scene.render.image_settings.file_format = "FFMPEG"
     scene.render.ffmpeg.format = "MPEG4"
     scene.render.ffmpeg.codec = "H264"
-    scene.render.ffmpeg.constant_rate_factor = "MEDIUM"
+    preferred_rate = "PERC_LOSSLESS" if quality.name == "final" else "HIGH"
+    try:
+        scene.render.ffmpeg.constant_rate_factor = preferred_rate
+    except (TypeError, ValueError):
+        scene.render.ffmpeg.constant_rate_factor = "MEDIUM"
     scene.render.ffmpeg.ffmpeg_preset = "GOOD"
     scene.render.film_transparent = False
-    if hasattr(scene, "eevee"):
-        if hasattr(scene.eevee, "taa_render_samples"):
-            scene.eevee.taa_render_samples = quality.samples
-        if hasattr(scene.eevee, "use_gtao"):
-            scene.eevee.use_gtao = True
+    if hasattr(scene.render, "use_persistent_data"):
+        scene.render.use_persistent_data = True
+    eevee = getattr(scene, "eevee", None)
+    set_supported_property(eevee, ("taa_render_samples", "taa_samples"), quality.samples)
+    set_supported_property(eevee, ("use_gtao",), True)
+    set_supported_property(eevee, ("use_raytracing",), quality.name != "draft")
+
+    motion_owners = (scene.render, eevee)
+    motion_enabled = False
+    for owner in motion_owners:
+        motion_enabled = set_supported_property(owner, ("use_motion_blur",), use_motion_blur) or motion_enabled
+        set_supported_property(owner, ("motion_blur_shutter",), 0.36)
+        set_supported_property(owner, ("motion_blur_position",), "CENTER")
+        set_supported_property(
+            owner,
+            ("motion_blur_steps", "motion_blur_samples"),
+            2 if quality.name == "draft" else 4 if quality.name == "preview" else 8,
+        )
+        set_supported_property(owner, ("motion_blur_max",), 24)
+    if use_motion_blur and not motion_enabled:
+        print("Warning: this Blender build did not expose an Eevee motion-blur switch.")
     try:
         scene.view_settings.look = "AgX - Medium High Contrast"
     except (TypeError, ValueError):
@@ -1580,12 +2252,20 @@ def render_inside_blender(
         "stateVersion": STATE_VERSION,
         "adapterVersion": ADAPTER_VERSION,
         "storyboardSha256": storyboard_hash,
+        "assetCatalogSha256": asset_catalog_fingerprint(catalog, catalog_path),
+        "assetSources": asset_source_records(catalog),
         "quality": {
             "name": quality.name,
             "width": quality.width,
             "height": quality.height,
             "fps": quality.fps,
             "samples": quality.samples,
+        },
+        "renderFeatures": {
+            "cameraStyle": args.camera_style,
+            "depthOfField": not args.no_depth_of_field,
+            "motionBlur": not args.no_motion_blur,
+            "strictAssets": bool(args.strict_assets),
         },
         "scenes": {},
     }
@@ -1597,13 +2277,15 @@ def render_inside_blender(
         state_mismatch = (
             existing.get("storyboardSha256") != storyboard_hash
             or existing.get("adapterVersion") != ADAPTER_VERSION
+            or existing.get("assetCatalogSha256") != state["assetCatalogSha256"]
             or existing.get("quality") != state["quality"]
+            or existing.get("renderFeatures") != state["renderFeatures"]
         )
         if state_mismatch:
             if not args.overwrite:
                 raise BlenderAdapterError(
-                    f"{state_path} belongs to a different storyboard, adapter version, "
-                    "or quality profile. "
+                    f"{state_path} belongs to a different storyboard, asset catalog, "
+                    "adapter version, camera setup, or quality profile. "
                     "Choose another --output-dir or use --overwrite deliberately."
                 )
         else:
@@ -1629,7 +2311,14 @@ def render_inside_blender(
             )
 
         clear_blender_scene(bpy)
-        create_location(bpy, Vector, storyboard, neutral_scene)
+        create_location(
+            bpy,
+            Vector,
+            storyboard,
+            neutral_scene,
+            catalog,
+            catalog_path,
+        )
         visual = require_mapping(neutral_scene.get("visual"), f"{scene_id}.visual")
         active_entities: Dict[str, Mapping[str, Any]] = dict(entities)
         active_ids = scene_entity_ids(neutral_scene)
@@ -1642,8 +2331,21 @@ def render_inside_blender(
             entity = active_entities.get(str(entity_id))
             if entity is None:
                 raise BlenderAdapterError(f"{scene_id} references unknown entity {entity_id!r}.")
-            root = create_entity_object(bpy, Vector, entity, catalog, catalog_path)
+            root = create_entity_object(
+                bpy,
+                Vector,
+                entity,
+                catalog,
+                catalog_path,
+                strict_assets=args.strict_assets,
+            )
             root.location = positions[str(entity_id)]
+            offset = root.get("animind_location_offset", [0.0, 0.0, 0.0])
+            try:
+                if len(offset) == 3:
+                    root.location = root.location + Vector(tuple(float(item) for item in offset))
+            except (TypeError, ValueError):
+                pass
             register_ground_clearance(bpy, Vector, root)
             roots[str(entity_id)] = root
 
@@ -1651,15 +2353,35 @@ def render_inside_blender(
         if roots:
             first = next(iter(roots.values()))
             focus_tuple = (float(first.location.x), float(first.location.y), float(first.location.z + 0.5))
-        configure_world_and_lights(bpy, neutral_scene, focus_tuple)
-        create_camera(bpy, Vector, neutral_scene, roots, quality.fps)
+        configure_world_and_lights(
+            bpy,
+            neutral_scene,
+            focus_tuple,
+            catalog,
+            catalog_path,
+        )
+        create_camera(
+            bpy,
+            Vector,
+            neutral_scene,
+            roots,
+            quality.fps,
+            camera_style=args.camera_style,
+            use_depth_of_field=not args.no_depth_of_field,
+        )
         frame_end = max(2, int(round(float(neutral_scene.get("durationSeconds", 1)) * quality.fps)))
         for action_value in visual.get("actions", []):
             action = require_mapping(action_value, f"{scene_id}.action")
             strategy = action_strategy(str(action.get("verb", "")), aliases)
             animate_action(action, roots, strategy, quality.fps, frame_end)
         set_smooth_interpolation(roots.values())
-        configure_render(bpy, quality, video_path, frame_end)
+        configure_render(
+            bpy,
+            quality,
+            video_path,
+            frame_end,
+            use_motion_blur=not args.no_motion_blur,
+        )
 
         state.setdefault("scenes", {})[scene_id] = {
             "status": "RENDERING",
@@ -1928,14 +2650,35 @@ def main(argv: Optional[Sequence[str]] = None) -> int:
             )
             return 0
 
-        print_plan(storyboard, scenes, quality, catalog, output_dir)
+        print_plan(
+            storyboard,
+            scenes,
+            quality,
+            catalog,
+            output_dir,
+            camera_style=args.camera_style,
+            motion_blur=not args.no_motion_blur,
+            depth_of_field=not args.no_depth_of_field,
+            strict_assets=args.strict_assets,
+        )
         if not args.render and not args.assemble_only:
             scene_option = f" --scene {args.scene}" if args.scene else " --scene scene_001"
+            catalog_option = (
+                f" --asset-catalog {args.asset_catalog.name}"
+                if args.asset_catalog is not None
+                else ""
+            )
+            camera_option = (
+                f" --camera-style {args.camera_style}"
+                if args.camera_style != "auto"
+                else ""
+            )
             print("\nDry run only: Blender was not launched and no frames were rendered.")
             print(
                 "Recommended first render:\n"
                 f"  python3 {Path(__file__).name} {storyboard_path.name} "
                 f"--render{scene_option} --quality draft"
+                f"{catalog_option}{camera_option}"
             )
             return 0
 

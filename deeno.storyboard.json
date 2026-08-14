@@ -1,0 +1,336 @@
+{
+  "schemaVersion": "1.0",
+  "kind": "animind.renderer-neutral-storyboard",
+  "generatedAt": "2026-08-08T23:28:46.404453Z",
+  "source": {
+    "storyPath": "/Users/tanyagupta/animind/deeno_30s.txt",
+    "wordCount": 60,
+    "narrationMode": "faithful-chunking",
+    "storyText": "Deeno, Rainbowland's only dragon, wore a pink bow and sang about playing, but he had no one to join him.\n\nOne night, a dull, slightly square blue ball dreamed itself into Rainbowland and landed on Deeno's head.\n\nAfter a wild tumble restored Ball's old shape and color, Deeno showed that friendship mattered more than perfection.\n\nTogether, they finished his song."
+  },
+  "project": {
+    "title": "Deeno in Rainbowland",
+    "visualStyle": "Cinematic animated fantasy with rounded storybook forms, expressive facial animation, coherent rainbow-themed production design, polished volumetric lighting, soft tactile materials, and natural squash-and-stretch motion. Colors are vivid but harmonized; friendship moments use warm, gentle framing.",
+    "frame": {
+      "width": 1280,
+      "height": 720,
+      "aspectRatio": "16:9",
+      "framesPerSecond": 24
+    },
+    "estimatedDurationSeconds": 30.0,
+    "sceneCount": 4,
+    "narrationWordsPerMinute": 145,
+    "baseSeed": 3478526519
+  },
+  "planner": {
+    "type": "openai",
+    "model": "gpt-5.6"
+  },
+  "entities": [
+    {
+      "entityId": "deeno",
+      "name": "Deeno",
+      "entityType": "creature",
+      "visualDescription": "A friendly young dragon with mint-green scales, a cream belly, small lavender wings, rounded horns, large expressive eyes, and a cheerful pink bow at his neck.",
+      "continuityNotes": "Deeno remains the same size and design throughout; the pink bow stays tied at his neck."
+    },
+    {
+      "entityId": "ball",
+      "name": "Ball",
+      "entityType": "creature",
+      "visualDescription": "A living blue ball with simple expressive eyes and a small mouth; initially dull blue and slightly square, later round, springy, and bright sapphire blue.",
+      "continuityNotes": "Keep Ball dull and slightly angular in scene 002; restore the round shape and vivid color during scene 003 and retain them afterward."
+    },
+    {
+      "entityId": "pink_bow",
+      "name": "Pink Bow",
+      "entityType": "prop",
+      "visualDescription": "A soft satin bow in bright rosy pink with two rounded loops and short tails.",
+      "continuityNotes": "Worn securely around Deeno's neck in every scene."
+    }
+  ],
+  "locations": [
+    {
+      "locationId": "rainbow_meadow",
+      "name": "Rainbow Meadow",
+      "visualDescription": "A rolling fantasy meadow with turquoise grass, curved rainbow arches, candy-colored flowers, smooth pastel stones, and distant rounded hills beneath a luminous sky.",
+      "continuityNotes": "Maintain the same central flower clearing and nearby rainbow arch; lighting shifts from sunset to night and then to warm dawn."
+    }
+  ],
+  "scenes": [
+    {
+      "sceneId": "scene_001",
+      "sequence": 1,
+      "startSeconds": 0.0,
+      "endSeconds": 10.0,
+      "durationSeconds": 10,
+      "seed": 989229890,
+      "narration": {
+        "text": "Deeno, Rainbowland's only dragon, wore a pink bow and sang about playing, but he had no one to join him.",
+        "wordCount": 20,
+        "startOffsetSeconds": 0.25
+      },
+      "visual": {
+        "summary": "Deeno performs alone in a colorful clearing, then notices the empty meadow around him.",
+        "locationId": "rainbow_meadow",
+        "settingDescription": "Sunset in the central flower clearing.",
+        "entityIds": [
+          "deeno",
+          "pink_bow"
+        ],
+        "actions": [
+          {
+            "actionId": "scene_001_action_01",
+            "actorId": "deeno",
+            "verb": "straightens",
+            "targetId": "pink_bow",
+            "manner": "with an eager smile",
+            "description": "Deeno gently straightens the bow at his neck.",
+            "startOffsetSeconds": 0.0,
+            "durationSeconds": 5.0
+          },
+          {
+            "actionId": "scene_001_action_02",
+            "actorId": "deeno",
+            "verb": "sings and gestures",
+            "targetId": null,
+            "manner": "playfully before slowing",
+            "description": "Deeno sings with open arms, then lowers them as he sees nobody nearby.",
+            "startOffsetSeconds": 5.0,
+            "durationSeconds": 5.0
+          }
+        ],
+        "camera": {
+          "shotType": "Medium wide shot",
+          "angle": "Eye level",
+          "movement": "Slow pullback",
+          "subject": "Deeno and the empty clearing",
+          "description": "Begin close enough to read Deeno's enthusiasm, then reveal the broad unoccupied meadow around him."
+        },
+        "look": {
+          "lighting": "Warm sunset light with soft rainbow reflections",
+          "mood": "Playful turning wistful"
+        },
+        "continuityNotes": "Deeno wears the pink bow; the clearing is undisturbed and empty."
+      },
+      "transitionIn": {
+        "type": "dissolve",
+        "description": "Gentle dissolve into night."
+      }
+    },
+    {
+      "sceneId": "scene_002",
+      "sequence": 2,
+      "startSeconds": 10.0,
+      "endSeconds": 18.0,
+      "durationSeconds": 8,
+      "seed": 1170776836,
+      "narration": {
+        "text": "One night, a dull, slightly square blue ball dreamed itself into Rainbowland and landed on Deeno's head.",
+        "wordCount": 17,
+        "startOffsetSeconds": 0.25
+      },
+      "visual": {
+        "summary": "Under a starry sky, the dull angular Ball drops into the meadow and lands on Deeno's head.",
+        "locationId": "rainbow_meadow",
+        "settingDescription": "Night in the same flower clearing beneath a star-filled sky.",
+        "entityIds": [
+          "deeno",
+          "ball",
+          "pink_bow"
+        ],
+        "actions": [
+          {
+            "actionId": "scene_002_action_01",
+            "actorId": "ball",
+            "verb": "drifts downward",
+            "targetId": "deeno",
+            "manner": "wobbling sleepily",
+            "description": "The dull, slightly square Ball descends from a soft blue glow above Deeno.",
+            "startOffsetSeconds": 0.0,
+            "durationSeconds": 4.0
+          },
+          {
+            "actionId": "scene_002_action_02",
+            "actorId": "ball",
+            "verb": "lands",
+            "targetId": "deeno",
+            "manner": "with a soft squash and bounce",
+            "description": "Ball bumps onto Deeno's head as Deeno's eyes widen and his knees buckle.",
+            "startOffsetSeconds": 4.0,
+            "durationSeconds": 4.0
+          }
+        ],
+        "camera": {
+          "shotType": "Wide shot tightening to medium",
+          "angle": "Low angle",
+          "movement": "Tilt down following Ball",
+          "subject": "Ball's descent toward Deeno",
+          "description": "Track Ball from the glowing sky to the surprised dragon below, ending on the gentle impact."
+        },
+        "look": {
+          "lighting": "Cool moonlight with a faint magical blue glow",
+          "mood": "Dreamlike and surprising"
+        },
+        "continuityNotes": "Ball is dull blue and slightly square; Deeno's bow remains secure after impact."
+      },
+      "transitionIn": {
+        "type": "cut",
+        "description": "Quick motion cut into the tumble."
+      }
+    },
+    {
+      "sceneId": "scene_003",
+      "sequence": 3,
+      "startSeconds": 18.0,
+      "endSeconds": 27.0,
+      "durationSeconds": 9,
+      "seed": 1114189843,
+      "narration": {
+        "text": "After a wild tumble restored Ball's old shape and color, Deeno showed that friendship mattered more than perfection.",
+        "wordCount": 18,
+        "startOffsetSeconds": 0.25
+      },
+      "visual": {
+        "summary": "Deeno and Ball tumble across the meadow; Ball becomes round and vivid before Deeno welcomes the changed newcomer.",
+        "locationId": "rainbow_meadow",
+        "settingDescription": "Late night moving toward dawn along a gentle grassy slope.",
+        "entityIds": [
+          "deeno",
+          "ball",
+          "pink_bow"
+        ],
+        "actions": [
+          {
+            "actionId": "scene_003_action_01",
+            "actorId": "deeno",
+            "verb": "tumbles with",
+            "targetId": "ball",
+            "manner": "wildly but harmlessly",
+            "description": "Deeno and Ball roll through soft flowers as Ball smooths into a round shape and brightens to sapphire blue.",
+            "startOffsetSeconds": 0.0,
+            "durationSeconds": 4.5
+          },
+          {
+            "actionId": "scene_003_action_02",
+            "actorId": "deeno",
+            "verb": "embraces",
+            "targetId": "ball",
+            "manner": "warmly and without hesitation",
+            "description": "Deeno steadies the restored Ball and pulls it into a smiling hug.",
+            "startOffsetSeconds": 4.5,
+            "durationSeconds": 4.5
+          }
+        ],
+        "camera": {
+          "shotType": "Tracking medium wide shot",
+          "angle": "Slightly low angle",
+          "movement": "Fast lateral track easing into a stop",
+          "subject": "Deeno and Ball tumbling together",
+          "description": "Follow their rolling motion, then settle into a close two-shot as Deeno embraces Ball."
+        },
+        "look": {
+          "lighting": "Cool moonlight warming with the first peach glow of dawn",
+          "mood": "Energetic, tender, and accepting"
+        },
+        "continuityNotes": "Ball changes from dull and angular to bright, round, and springy during the tumble; Deeno's bow becomes slightly rumpled but stays tied."
+      },
+      "transitionIn": {
+        "type": "cut",
+        "description": "Soft cut on their shared smile."
+      }
+    },
+    {
+      "sceneId": "scene_004",
+      "sequence": 4,
+      "startSeconds": 27.0,
+      "endSeconds": 30.0,
+      "durationSeconds": 3,
+      "seed": 2637910420,
+      "narration": {
+        "text": "Together, they finished his song.",
+        "wordCount": 5,
+        "startOffsetSeconds": 0.25
+      },
+      "visual": {
+        "summary": "At dawn, Deeno sings while Ball bounces beside him in joyful rhythm.",
+        "locationId": "rainbow_meadow",
+        "settingDescription": "Dawn in the central flower clearing.",
+        "entityIds": [
+          "deeno",
+          "ball",
+          "pink_bow"
+        ],
+        "actions": [
+          {
+            "actionId": "scene_004_action_01",
+            "actorId": "deeno",
+            "verb": "sings",
+            "targetId": "ball",
+            "manner": "brightly with an inviting gesture",
+            "description": "Deeno sings toward Ball with one arm extended.",
+            "startOffsetSeconds": 0.0,
+            "durationSeconds": 1.5
+          },
+          {
+            "actionId": "scene_004_action_02",
+            "actorId": "ball",
+            "verb": "bounces",
+            "targetId": "deeno",
+            "manner": "joyfully in rhythm",
+            "description": "Ball springs beside Deeno, smiling as they finish together.",
+            "startOffsetSeconds": 1.5,
+            "durationSeconds": 1.5
+          }
+        ],
+        "camera": {
+          "shotType": "Medium two-shot",
+          "angle": "Eye level",
+          "movement": "Slow circular drift",
+          "subject": "Deeno and Ball performing together",
+          "description": "Hold both friends in the center as rainbow arches and flowers frame their shared performance."
+        },
+        "look": {
+          "lighting": "Warm golden dawn with luminous rainbow highlights",
+          "mood": "Joyful and complete"
+        },
+        "continuityNotes": "Ball remains round and vivid blue; Deeno's pink bow remains slightly rumpled from the tumble."
+      },
+      "transitionIn": {
+        "type": "fade",
+        "description": "Fade out on their smiling pose."
+      }
+    }
+  ],
+  "timeline": {
+    "sceneOrder": [
+      "scene_001",
+      "scene_002",
+      "scene_003",
+      "scene_004"
+    ],
+    "narrationTrack": [
+      {
+        "sceneId": "scene_001",
+        "startSeconds": 0.25,
+        "gainDb": 0
+      },
+      {
+        "sceneId": "scene_002",
+        "startSeconds": 10.25,
+        "gainDb": 0
+      },
+      {
+        "sceneId": "scene_003",
+        "startSeconds": 18.25,
+        "gainDb": 0
+      },
+      {
+        "sceneId": "scene_004",
+        "startSeconds": 27.25,
+        "gainDb": 0
+      }
+    ],
+    "finalDurationSeconds": 30.0
+  }
+}

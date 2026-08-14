@@ -1,0 +1,120 @@
+{
+  "schemaVersion": "1.0",
+  "kind": "animind.renderer-neutral-storyboard",
+  "generatedAt": "2026-08-08T22:01:40.872583Z",
+  "source": {
+    "storyPath": "/Users/tanyagupta/animind/cafe.txt",
+    "wordCount": 15,
+    "narrationMode": "faithful-chunking",
+    "storyText": "it was a sunny day. The man crossed the street and walked into a cafe."
+  },
+  "project": {
+    "title": "It Was a Sunny Day",
+    "visualStyle": "Cinematic animated film with expressive natural character motion, coherent contemporary urban design, polished warm daylight, soft shadows, and restrained realistic color.",
+    "frame": {
+      "width": 1280,
+      "height": 720,
+      "aspectRatio": "16:9",
+      "framesPerSecond": 24
+    },
+    "estimatedDurationSeconds": 8.0,
+    "sceneCount": 1,
+    "narrationWordsPerMinute": 145,
+    "baseSeed": 1936944345
+  },
+  "planner": {
+    "type": "openai",
+    "model": "gpt-5.6"
+  },
+  "entities": [
+    {
+      "entityId": "man",
+      "name": "Man",
+      "entityType": "person",
+      "visualDescription": "Adult man with short dark hair, a light blue shirt, tan trousers, brown shoes, and a small dark shoulder bag.",
+      "continuityNotes": "Keep clothing, bag placement, proportions, and walking pace consistent throughout."
+    }
+  ],
+  "locations": [
+    {
+      "locationId": "cafe_street",
+      "name": "Street Outside the Cafe",
+      "visualDescription": "Sunny neighborhood street with a marked pedestrian crossing, leafy trees, low-rise storefronts, and a welcoming corner cafe with glass doors and shaded outdoor tables.",
+      "continuityNotes": "Cafe remains across the crossing; sunlight falls from camera-left and traffic lanes stay clear."
+    }
+  ],
+  "scenes": [
+    {
+      "sceneId": "scene_001",
+      "sequence": 1,
+      "startSeconds": 0.0,
+      "endSeconds": 8.0,
+      "durationSeconds": 8,
+      "seed": 3144704596,
+      "narration": {
+        "text": "it was a sunny day. The man crossed the street and walked into a cafe.",
+        "wordCount": 15,
+        "startOffsetSeconds": 0.25
+      },
+      "visual": {
+        "summary": "A man crosses a bright neighborhood street and enters the corner cafe.",
+        "locationId": "cafe_street",
+        "settingDescription": "Warm late-morning exterior at a quiet pedestrian crossing beside a cafe.",
+        "entityIds": [
+          "man"
+        ],
+        "actions": [
+          {
+            "actionId": "scene_001_action_01",
+            "actorId": "man",
+            "verb": "crosses the street",
+            "targetId": null,
+            "manner": "with an easy, purposeful stride",
+            "description": "The man walks along the marked crossing toward the cafe.",
+            "startOffsetSeconds": 0.0,
+            "durationSeconds": 4.0
+          },
+          {
+            "actionId": "scene_001_action_02",
+            "actorId": "man",
+            "verb": "enters the cafe",
+            "targetId": null,
+            "manner": "without breaking pace",
+            "description": "He reaches the glass entrance, opens it, and steps inside.",
+            "startOffsetSeconds": 4.0,
+            "durationSeconds": 4.0
+          }
+        ],
+        "camera": {
+          "shotType": "Wide shot tightening to medium-wide",
+          "angle": "Eye level",
+          "movement": "Smooth lateral tracking followed by a gentle push toward the entrance",
+          "subject": "The man moving from the crossing to the cafe doorway",
+          "description": "Tracks parallel to his crossing, then arcs slightly to frame his entrance through the glass door."
+        },
+        "look": {
+          "lighting": "Clear golden daylight with soft tree shadows and warm reflections on the cafe windows.",
+          "mood": "Bright, calm, and inviting"
+        },
+        "continuityNotes": "Maintain the man's direction of travel toward the cafe and preserve consistent sunlight and storefront geography."
+      },
+      "transitionIn": {
+        "type": "cut",
+        "description": "Cut as the door closes behind him."
+      }
+    }
+  ],
+  "timeline": {
+    "sceneOrder": [
+      "scene_001"
+    ],
+    "narrationTrack": [
+      {
+        "sceneId": "scene_001",
+        "startSeconds": 0.25,
+        "gainDb": 0
+      }
+    ],
+    "finalDurationSeconds": 8.0
+  }
+}

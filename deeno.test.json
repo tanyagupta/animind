@@ -1,0 +1,1100 @@
+{
+  "schemaVersion": "1.0",
+  "kind": "animind.renderer-neutral-storyboard",
+  "generatedAt": "2026-08-08T23:11:29.330609Z",
+  "source": {
+    "storyPath": "/Users/tanyagupta/animind/deeno1.txt",
+    "wordCount": 268,
+    "narrationMode": "faithful-chunking",
+    "storyText": "Rainbowland is a place that started where the rainbow started and ended where it ended. So it was a huge place where there was room for everybody. Rainbowland was full of dreamers who were dreaming wonderful dreams and when they could not let go of their dreams, they ended up here. Some daydreamers also entered Rainbowland for a short time. That is why people say \"she is in another world\" when someone is daydreaming. Dreamers sometimes create dreams that are so bright, and real that it is not like a dream at all. The dream glistens and shines with many colours. This colourful call of the dream attracts a smoky white ship from Rainbowland. Chugging along, it reaches the doorstep of the dreamer. Only the dreamer sees the ship, and that too, in his dreams. The dreamer, still dreaming, steps into the ship. The dreamer has not yet decided whether he wants to live in Rainbowland forever or not . So he leaves his body behind just in case he wants to return. And off he goes. The ship sails for 6 days and 6 nights and finally reaches Rainbowland. And what a beautiful place it is!\n\nPeople in Rainblowland can do wonderful things. They can hang upside down, fly, sink deep into the ground or enter the skies. If they want they can break into many pieces and then come together again. Why would they want to break into many pieces you say ? Well if they break into 10 pieces and each piece falls from the sky saying \"wheeee\" with delight, then it becomes 10 times the fun!"
+  },
+  "project": {
+    "title": "Rainbowland is a place that started where the",
+    "visualStyle": "cinematic animated film, expressive characters, coherent production design, polished lighting, and natural motion",
+    "frame": {
+      "width": 1280,
+      "height": 720,
+      "aspectRatio": "16:9",
+      "framesPerSecond": 24
+    },
+    "estimatedDurationSeconds": 138.0,
+    "sceneCount": 20,
+    "narrationWordsPerMinute": 145,
+    "baseSeed": 3370562835
+  },
+  "planner": {
+    "type": "local",
+    "model": null
+  },
+  "entities": [],
+  "locations": [],
+  "scenes": [
+    {
+      "sceneId": "scene_001",
+      "sequence": 1,
+      "startSeconds": 0.0,
+      "endSeconds": 7.0,
+      "durationSeconds": 7,
+      "seed": 3782660401,
+      "narration": {
+        "text": "Rainbowland is a place that started where the rainbow started and ended where it ended.",
+        "wordCount": 15,
+        "startOffsetSeconds": 0.25
+      },
+      "visual": {
+        "summary": "An animated interpretation of: Rainbowland is a place that started where the rainbow started and ended where it ended",
+        "locationId": null,
+        "settingDescription": "The location and period described or implied by the narration",
+        "entityIds": [],
+        "actions": [
+          {
+            "actionId": "scene_001_action_01",
+            "actorId": null,
+            "verb": "perform_story_beat",
+            "targetId": null,
+            "manner": "as described by the narration",
+            "description": "Show the central subject visibly acting out this story beat: Rainbowland is a place that started where the rainbow started and ended where it ended",
+            "startOffsetSeconds": 0.0,
+            "durationSeconds": 7.0
+          }
+        ],
+        "camera": {
+          "shotType": "wide",
+          "angle": "eye-level",
+          "movement": "slow push-in",
+          "subject": "the central subject",
+          "description": "wide slow push-in following the central action"
+        },
+        "look": {
+          "lighting": "motivated cinematic lighting appropriate to the time, place, and mood",
+          "mood": "emotionally faithful to this story beat"
+        },
+        "continuityNotes": "Preserve recurring characters, clothing, props, geography, and color palette"
+      },
+      "transitionIn": {
+        "type": "fade",
+        "description": "fade-in"
+      }
+    },
+    {
+      "sceneId": "scene_002",
+      "sequence": 2,
+      "startSeconds": 7.0,
+      "endSeconds": 13.0,
+      "durationSeconds": 6,
+      "seed": 988212104,
+      "narration": {
+        "text": "So it was a huge place where there was room for everybody.",
+        "wordCount": 12,
+        "startOffsetSeconds": 0.25
+      },
+      "visual": {
+        "summary": "An animated interpretation of: So it was a huge place where there was room for everybody",
+        "locationId": null,
+        "settingDescription": "The location and period described or implied by the narration",
+        "entityIds": [],
+        "actions": [
+          {
+            "actionId": "scene_002_action_01",
+            "actorId": null,
+            "verb": "perform_story_beat",
+            "targetId": null,
+            "manner": "as described by the narration",
+            "description": "Show the central subject visibly acting out this story beat: So it was a huge place where there was room for everybody",
+            "startOffsetSeconds": 0.0,
+            "durationSeconds": 6.0
+          }
+        ],
+        "camera": {
+          "shotType": "medium",
+          "angle": "eye-level",
+          "movement": "tracking",
+          "subject": "the central subject",
+          "description": "medium tracking following the central action"
+        },
+        "look": {
+          "lighting": "motivated cinematic lighting appropriate to the time, place, and mood",
+          "mood": "emotionally faithful to this story beat"
+        },
+        "continuityNotes": "Preserve recurring characters, clothing, props, geography, and color palette"
+      },
+      "transitionIn": {
+        "type": "cut",
+        "description": "cut"
+      }
+    },
+    {
+      "sceneId": "scene_003",
+      "sequence": 3,
+      "startSeconds": 13.0,
+      "endSeconds": 24.0,
+      "durationSeconds": 11,
+      "seed": 4017754282,
+      "narration": {
+        "text": "Rainbowland was full of dreamers who were dreaming wonderful dreams and when they could not let go of their dreams, they ended up here.",
+        "wordCount": 24,
+        "startOffsetSeconds": 0.25
+      },
+      "visual": {
+        "summary": "An animated interpretation of: Rainbowland was full of dreamers who were dreaming wonderful dreams and when they could not let go of their dreams, they ended up here",
+        "locationId": null,
+        "settingDescription": "The location and period described or implied by the narration",
+        "entityIds": [],
+        "actions": [
+          {
+            "actionId": "scene_003_action_01",
+            "actorId": null,
+            "verb": "perform_story_beat",
+            "targetId": null,
+            "manner": "as described by the narration",
+            "description": "Show the central subject visibly acting out this story beat: Rainbowland was full of dreamers who were dreaming wonderful dreams and when they could not let go of their dreams, they ended up here",
+            "startOffsetSeconds": 0.0,
+            "durationSeconds": 11.0
+          }
+        ],
+        "camera": {
+          "shotType": "close-up",
+          "angle": "eye-level",
+          "movement": "subtle parallax",
+          "subject": "the central subject",
+          "description": "close-up subtle parallax following the central action"
+        },
+        "look": {
+          "lighting": "motivated cinematic lighting appropriate to the time, place, and mood",
+          "mood": "emotionally faithful to this story beat"
+        },
+        "continuityNotes": "Preserve recurring characters, clothing, props, geography, and color palette"
+      },
+      "transitionIn": {
+        "type": "dissolve",
+        "description": "dissolve"
+      }
+    },
+    {
+      "sceneId": "scene_004",
+      "sequence": 4,
+      "startSeconds": 24.0,
+      "endSeconds": 29.0,
+      "durationSeconds": 5,
+      "seed": 3692030522,
+      "narration": {
+        "text": "Some daydreamers also entered Rainbowland for a short time.",
+        "wordCount": 9,
+        "startOffsetSeconds": 0.25
+      },
+      "visual": {
+        "summary": "An animated interpretation of: Some daydreamers also entered Rainbowland for a short time",
+        "locationId": null,
+        "settingDescription": "The location and period described or implied by the narration",
+        "entityIds": [],
+        "actions": [
+          {
+            "actionId": "scene_004_action_01",
+            "actorId": null,
+            "verb": "perform_story_beat",
+            "targetId": null,
+            "manner": "as described by the narration",
+            "description": "Show the central subject visibly acting out this story beat: Some daydreamers also entered Rainbowland for a short time",
+            "startOffsetSeconds": 0.0,
+            "durationSeconds": 5.0
+          }
+        ],
+        "camera": {
+          "shotType": "medium",
+          "angle": "three-quarter",
+          "movement": "gentle orbit",
+          "subject": "the central subject",
+          "description": "medium gentle orbit following the central action"
+        },
+        "look": {
+          "lighting": "motivated cinematic lighting appropriate to the time, place, and mood",
+          "mood": "emotionally faithful to this story beat"
+        },
+        "continuityNotes": "Preserve recurring characters, clothing, props, geography, and color palette"
+      },
+      "transitionIn": {
+        "type": "cut",
+        "description": "cut"
+      }
+    },
+    {
+      "sceneId": "scene_005",
+      "sequence": 5,
+      "startSeconds": 29.0,
+      "endSeconds": 36.0,
+      "durationSeconds": 7,
+      "seed": 473859251,
+      "narration": {
+        "text": "That is why people say \"she is in another world\" when someone is daydreaming.",
+        "wordCount": 14,
+        "startOffsetSeconds": 0.25
+      },
+      "visual": {
+        "summary": "An animated interpretation of: That is why people say \"she is in another world\" when someone is daydreaming",
+        "locationId": null,
+        "settingDescription": "The location and period described or implied by the narration",
+        "entityIds": [],
+        "actions": [
+          {
+            "actionId": "scene_005_action_01",
+            "actorId": null,
+            "verb": "perform_story_beat",
+            "targetId": null,
+            "manner": "as described by the narration",
+            "description": "Show the central subject visibly acting out this story beat: That is why people say \"she is in another world\" when someone is daydreaming",
+            "startOffsetSeconds": 0.0,
+            "durationSeconds": 7.0
+          }
+        ],
+        "camera": {
+          "shotType": "wide",
+          "angle": "high-angle",
+          "movement": "lower toward eye-level",
+          "subject": "the central subject",
+          "description": "wide lower toward eye-level following the central action"
+        },
+        "look": {
+          "lighting": "motivated cinematic lighting appropriate to the time, place, and mood",
+          "mood": "emotionally faithful to this story beat"
+        },
+        "continuityNotes": "Preserve recurring characters, clothing, props, geography, and color palette"
+      },
+      "transitionIn": {
+        "type": "match-cut",
+        "description": "match-cut"
+      }
+    },
+    {
+      "sceneId": "scene_006",
+      "sequence": 6,
+      "startSeconds": 36.0,
+      "endSeconds": 45.0,
+      "durationSeconds": 9,
+      "seed": 1320681770,
+      "narration": {
+        "text": "Dreamers sometimes create dreams that are so bright, and real that it is not like a dream at all.",
+        "wordCount": 19,
+        "startOffsetSeconds": 0.25
+      },
+      "visual": {
+        "summary": "An animated interpretation of: Dreamers sometimes create dreams that are so bright, and real that it is not like a dream at all",
+        "locationId": null,
+        "settingDescription": "The location and period described or implied by the narration",
+        "entityIds": [],
+        "actions": [
+          {
+            "actionId": "scene_006_action_01",
+            "actorId": null,
+            "verb": "perform_story_beat",
+            "targetId": null,
+            "manner": "as described by the narration",
+            "description": "Show the central subject visibly acting out this story beat: Dreamers sometimes create dreams that are so bright, and real that it is not like a dream at all",
+            "startOffsetSeconds": 0.0,
+            "durationSeconds": 9.0
+          }
+        ],
+        "camera": {
+          "shotType": "wide",
+          "angle": "eye-level",
+          "movement": "slow push-in",
+          "subject": "the central subject",
+          "description": "wide slow push-in following the central action"
+        },
+        "look": {
+          "lighting": "motivated cinematic lighting appropriate to the time, place, and mood",
+          "mood": "emotionally faithful to this story beat"
+        },
+        "continuityNotes": "Preserve recurring characters, clothing, props, geography, and color palette"
+      },
+      "transitionIn": {
+        "type": "fade",
+        "description": "fade"
+      }
+    },
+    {
+      "sceneId": "scene_007",
+      "sequence": 7,
+      "startSeconds": 45.0,
+      "endSeconds": 50.0,
+      "durationSeconds": 5,
+      "seed": 3755667831,
+      "narration": {
+        "text": "The dream glistens and shines with many colours.",
+        "wordCount": 8,
+        "startOffsetSeconds": 0.25
+      },
+      "visual": {
+        "summary": "An animated interpretation of: The dream glistens and shines with many colours",
+        "locationId": null,
+        "settingDescription": "The location and period described or implied by the narration",
+        "entityIds": [],
+        "actions": [
+          {
+            "actionId": "scene_007_action_01",
+            "actorId": null,
+            "verb": "perform_story_beat",
+            "targetId": null,
+            "manner": "as described by the narration",
+            "description": "Show the central subject visibly acting out this story beat: The dream glistens and shines with many colours",
+            "startOffsetSeconds": 0.0,
+            "durationSeconds": 5.0
+          }
+        ],
+        "camera": {
+          "shotType": "medium",
+          "angle": "eye-level",
+          "movement": "tracking",
+          "subject": "the central subject",
+          "description": "medium tracking following the central action"
+        },
+        "look": {
+          "lighting": "motivated cinematic lighting appropriate to the time, place, and mood",
+          "mood": "emotionally faithful to this story beat"
+        },
+        "continuityNotes": "Preserve recurring characters, clothing, props, geography, and color palette"
+      },
+      "transitionIn": {
+        "type": "cut",
+        "description": "cut"
+      }
+    },
+    {
+      "sceneId": "scene_008",
+      "sequence": 8,
+      "startSeconds": 50.0,
+      "endSeconds": 57.0,
+      "durationSeconds": 7,
+      "seed": 248600952,
+      "narration": {
+        "text": "This colourful call of the dream attracts a smoky white ship from Rainbowland.",
+        "wordCount": 13,
+        "startOffsetSeconds": 0.25
+      },
+      "visual": {
+        "summary": "An animated interpretation of: This colourful call of the dream attracts a smoky white ship from Rainbowland",
+        "locationId": null,
+        "settingDescription": "The location and period described or implied by the narration",
+        "entityIds": [],
+        "actions": [
+          {
+            "actionId": "scene_008_action_01",
+            "actorId": null,
+            "verb": "perform_story_beat",
+            "targetId": null,
+            "manner": "as described by the narration",
+            "description": "Show the central subject visibly acting out this story beat: This colourful call of the dream attracts a smoky white ship from Rainbowland",
+            "startOffsetSeconds": 0.0,
+            "durationSeconds": 7.0
+          }
+        ],
+        "camera": {
+          "shotType": "close-up",
+          "angle": "eye-level",
+          "movement": "subtle parallax",
+          "subject": "the central subject",
+          "description": "close-up subtle parallax following the central action"
+        },
+        "look": {
+          "lighting": "motivated cinematic lighting appropriate to the time, place, and mood",
+          "mood": "emotionally faithful to this story beat"
+        },
+        "continuityNotes": "Preserve recurring characters, clothing, props, geography, and color palette"
+      },
+      "transitionIn": {
+        "type": "dissolve",
+        "description": "dissolve"
+      }
+    },
+    {
+      "sceneId": "scene_009",
+      "sequence": 9,
+      "startSeconds": 57.0,
+      "endSeconds": 62.0,
+      "durationSeconds": 5,
+      "seed": 4082227529,
+      "narration": {
+        "text": "Chugging along, it reaches the doorstep of the dreamer.",
+        "wordCount": 9,
+        "startOffsetSeconds": 0.25
+      },
+      "visual": {
+        "summary": "An animated interpretation of: Chugging along, it reaches the doorstep of the dreamer",
+        "locationId": null,
+        "settingDescription": "The location and period described or implied by the narration",
+        "entityIds": [],
+        "actions": [
+          {
+            "actionId": "scene_009_action_01",
+            "actorId": null,
+            "verb": "perform_story_beat",
+            "targetId": null,
+            "manner": "as described by the narration",
+            "description": "Show the central subject visibly acting out this story beat: Chugging along, it reaches the doorstep of the dreamer",
+            "startOffsetSeconds": 0.0,
+            "durationSeconds": 5.0
+          }
+        ],
+        "camera": {
+          "shotType": "medium",
+          "angle": "three-quarter",
+          "movement": "gentle orbit",
+          "subject": "the central subject",
+          "description": "medium gentle orbit following the central action"
+        },
+        "look": {
+          "lighting": "motivated cinematic lighting appropriate to the time, place, and mood",
+          "mood": "emotionally faithful to this story beat"
+        },
+        "continuityNotes": "Preserve recurring characters, clothing, props, geography, and color palette"
+      },
+      "transitionIn": {
+        "type": "cut",
+        "description": "cut"
+      }
+    },
+    {
+      "sceneId": "scene_010",
+      "sequence": 10,
+      "startSeconds": 62.0,
+      "endSeconds": 68.0,
+      "durationSeconds": 6,
+      "seed": 3494005724,
+      "narration": {
+        "text": "Only the dreamer sees the ship, and that too, in his dreams.",
+        "wordCount": 12,
+        "startOffsetSeconds": 0.25
+      },
+      "visual": {
+        "summary": "An animated interpretation of: Only the dreamer sees the ship, and that too, in his dreams",
+        "locationId": null,
+        "settingDescription": "The location and period described or implied by the narration",
+        "entityIds": [],
+        "actions": [
+          {
+            "actionId": "scene_010_action_01",
+            "actorId": null,
+            "verb": "perform_story_beat",
+            "targetId": null,
+            "manner": "as described by the narration",
+            "description": "Show the central subject visibly acting out this story beat: Only the dreamer sees the ship, and that too, in his dreams",
+            "startOffsetSeconds": 0.0,
+            "durationSeconds": 6.0
+          }
+        ],
+        "camera": {
+          "shotType": "wide",
+          "angle": "high-angle",
+          "movement": "lower toward eye-level",
+          "subject": "the central subject",
+          "description": "wide lower toward eye-level following the central action"
+        },
+        "look": {
+          "lighting": "motivated cinematic lighting appropriate to the time, place, and mood",
+          "mood": "emotionally faithful to this story beat"
+        },
+        "continuityNotes": "Preserve recurring characters, clothing, props, geography, and color palette"
+      },
+      "transitionIn": {
+        "type": "match-cut",
+        "description": "match-cut"
+      }
+    },
+    {
+      "sceneId": "scene_011",
+      "sequence": 11,
+      "startSeconds": 68.0,
+      "endSeconds": 73.0,
+      "durationSeconds": 5,
+      "seed": 3285977258,
+      "narration": {
+        "text": "The dreamer, still dreaming, steps into the ship.",
+        "wordCount": 8,
+        "startOffsetSeconds": 0.25
+      },
+      "visual": {
+        "summary": "An animated interpretation of: The dreamer, still dreaming, steps into the ship",
+        "locationId": null,
+        "settingDescription": "The location and period described or implied by the narration",
+        "entityIds": [],
+        "actions": [
+          {
+            "actionId": "scene_011_action_01",
+            "actorId": null,
+            "verb": "perform_story_beat",
+            "targetId": null,
+            "manner": "as described by the narration",
+            "description": "Show the central subject visibly acting out this story beat: The dreamer, still dreaming, steps into the ship",
+            "startOffsetSeconds": 0.0,
+            "durationSeconds": 5.0
+          }
+        ],
+        "camera": {
+          "shotType": "wide",
+          "angle": "eye-level",
+          "movement": "slow push-in",
+          "subject": "the central subject",
+          "description": "wide slow push-in following the central action"
+        },
+        "look": {
+          "lighting": "motivated cinematic lighting appropriate to the time, place, and mood",
+          "mood": "emotionally faithful to this story beat"
+        },
+        "continuityNotes": "Preserve recurring characters, clothing, props, geography, and color palette"
+      },
+      "transitionIn": {
+        "type": "fade",
+        "description": "fade"
+      }
+    },
+    {
+      "sceneId": "scene_012",
+      "sequence": 12,
+      "startSeconds": 73.0,
+      "endSeconds": 81.0,
+      "durationSeconds": 8,
+      "seed": 3303219793,
+      "narration": {
+        "text": "The dreamer has not yet decided whether he wants to live in Rainbowland forever or not .",
+        "wordCount": 16,
+        "startOffsetSeconds": 0.25
+      },
+      "visual": {
+        "summary": "An animated interpretation of: The dreamer has not yet decided whether he wants to live in Rainbowland forever or not ",
+        "locationId": null,
+        "settingDescription": "The location and period described or implied by the narration",
+        "entityIds": [],
+        "actions": [
+          {
+            "actionId": "scene_012_action_01",
+            "actorId": null,
+            "verb": "perform_story_beat",
+            "targetId": null,
+            "manner": "as described by the narration",
+            "description": "Show the central subject visibly acting out this story beat: The dreamer has not yet decided whether he wants to live in Rainbowland forever or not ",
+            "startOffsetSeconds": 0.0,
+            "durationSeconds": 8.0
+          }
+        ],
+        "camera": {
+          "shotType": "medium",
+          "angle": "eye-level",
+          "movement": "tracking",
+          "subject": "the central subject",
+          "description": "medium tracking following the central action"
+        },
+        "look": {
+          "lighting": "motivated cinematic lighting appropriate to the time, place, and mood",
+          "mood": "emotionally faithful to this story beat"
+        },
+        "continuityNotes": "Preserve recurring characters, clothing, props, geography, and color palette"
+      },
+      "transitionIn": {
+        "type": "cut",
+        "description": "cut"
+      }
+    },
+    {
+      "sceneId": "scene_013",
+      "sequence": 13,
+      "startSeconds": 81.0,
+      "endSeconds": 88.0,
+      "durationSeconds": 7,
+      "seed": 568398553,
+      "narration": {
+        "text": "So he leaves his body behind just in case he wants to return.",
+        "wordCount": 13,
+        "startOffsetSeconds": 0.25
+      },
+      "visual": {
+        "summary": "An animated interpretation of: So he leaves his body behind just in case he wants to return",
+        "locationId": null,
+        "settingDescription": "The location and period described or implied by the narration",
+        "entityIds": [],
+        "actions": [
+          {
+            "actionId": "scene_013_action_01",
+            "actorId": null,
+            "verb": "perform_story_beat",
+            "targetId": null,
+            "manner": "as described by the narration",
+            "description": "Show the central subject visibly acting out this story beat: So he leaves his body behind just in case he wants to return",
+            "startOffsetSeconds": 0.0,
+            "durationSeconds": 7.0
+          }
+        ],
+        "camera": {
+          "shotType": "close-up",
+          "angle": "eye-level",
+          "movement": "subtle parallax",
+          "subject": "the central subject",
+          "description": "close-up subtle parallax following the central action"
+        },
+        "look": {
+          "lighting": "motivated cinematic lighting appropriate to the time, place, and mood",
+          "mood": "emotionally faithful to this story beat"
+        },
+        "continuityNotes": "Preserve recurring characters, clothing, props, geography, and color palette"
+      },
+      "transitionIn": {
+        "type": "dissolve",
+        "description": "dissolve"
+      }
+    },
+    {
+      "sceneId": "scene_014",
+      "sequence": 14,
+      "startSeconds": 88.0,
+      "endSeconds": 91.0,
+      "durationSeconds": 3,
+      "seed": 3622976115,
+      "narration": {
+        "text": "And off he goes.",
+        "wordCount": 4,
+        "startOffsetSeconds": 0.25
+      },
+      "visual": {
+        "summary": "An animated interpretation of: And off he goes",
+        "locationId": null,
+        "settingDescription": "The location and period described or implied by the narration",
+        "entityIds": [],
+        "actions": [
+          {
+            "actionId": "scene_014_action_01",
+            "actorId": null,
+            "verb": "perform_story_beat",
+            "targetId": null,
+            "manner": "as described by the narration",
+            "description": "Show the central subject visibly acting out this story beat: And off he goes",
+            "startOffsetSeconds": 0.0,
+            "durationSeconds": 3.0
+          }
+        ],
+        "camera": {
+          "shotType": "medium",
+          "angle": "three-quarter",
+          "movement": "gentle orbit",
+          "subject": "the central subject",
+          "description": "medium gentle orbit following the central action"
+        },
+        "look": {
+          "lighting": "motivated cinematic lighting appropriate to the time, place, and mood",
+          "mood": "emotionally faithful to this story beat"
+        },
+        "continuityNotes": "Preserve recurring characters, clothing, props, geography, and color palette"
+      },
+      "transitionIn": {
+        "type": "cut",
+        "description": "cut"
+      }
+    },
+    {
+      "sceneId": "scene_015",
+      "sequence": 15,
+      "startSeconds": 91.0,
+      "endSeconds": 98.0,
+      "durationSeconds": 7,
+      "seed": 2349500161,
+      "narration": {
+        "text": "The ship sails for 6 days and 6 nights and finally reaches Rainbowland.",
+        "wordCount": 13,
+        "startOffsetSeconds": 0.25
+      },
+      "visual": {
+        "summary": "An animated interpretation of: The ship sails for 6 days and 6 nights and finally reaches Rainbowland",
+        "locationId": null,
+        "settingDescription": "The location and period described or implied by the narration",
+        "entityIds": [],
+        "actions": [
+          {
+            "actionId": "scene_015_action_01",
+            "actorId": null,
+            "verb": "perform_story_beat",
+            "targetId": null,
+            "manner": "as described by the narration",
+            "description": "Show the central subject visibly acting out this story beat: The ship sails for 6 days and 6 nights and finally reaches Rainbowland",
+            "startOffsetSeconds": 0.0,
+            "durationSeconds": 7.0
+          }
+        ],
+        "camera": {
+          "shotType": "wide",
+          "angle": "high-angle",
+          "movement": "lower toward eye-level",
+          "subject": "the central subject",
+          "description": "wide lower toward eye-level following the central action"
+        },
+        "look": {
+          "lighting": "motivated cinematic lighting appropriate to the time, place, and mood",
+          "mood": "emotionally faithful to this story beat"
+        },
+        "continuityNotes": "Preserve recurring characters, clothing, props, geography, and color palette"
+      },
+      "transitionIn": {
+        "type": "match-cut",
+        "description": "match-cut"
+      }
+    },
+    {
+      "sceneId": "scene_016",
+      "sequence": 16,
+      "startSeconds": 98.0,
+      "endSeconds": 105.0,
+      "durationSeconds": 7,
+      "seed": 3942451911,
+      "narration": {
+        "text": "And what a beautiful place it is! People in Rainblowland can do wonderful things.",
+        "wordCount": 14,
+        "startOffsetSeconds": 0.25
+      },
+      "visual": {
+        "summary": "An animated interpretation of: And what a beautiful place it is! People in Rainblowland can do wonderful things",
+        "locationId": null,
+        "settingDescription": "The location and period described or implied by the narration",
+        "entityIds": [],
+        "actions": [
+          {
+            "actionId": "scene_016_action_01",
+            "actorId": null,
+            "verb": "perform_story_beat",
+            "targetId": null,
+            "manner": "as described by the narration",
+            "description": "Show the central subject visibly acting out this story beat: And what a beautiful place it is! People in Rainblowland can do wonderful things",
+            "startOffsetSeconds": 0.0,
+            "durationSeconds": 7.0
+          }
+        ],
+        "camera": {
+          "shotType": "wide",
+          "angle": "eye-level",
+          "movement": "slow push-in",
+          "subject": "the central subject",
+          "description": "wide slow push-in following the central action"
+        },
+        "look": {
+          "lighting": "motivated cinematic lighting appropriate to the time, place, and mood",
+          "mood": "emotionally faithful to this story beat"
+        },
+        "continuityNotes": "Preserve recurring characters, clothing, props, geography, and color palette"
+      },
+      "transitionIn": {
+        "type": "fade",
+        "description": "fade"
+      }
+    },
+    {
+      "sceneId": "scene_017",
+      "sequence": 17,
+      "startSeconds": 105.0,
+      "endSeconds": 113.0,
+      "durationSeconds": 8,
+      "seed": 1606788900,
+      "narration": {
+        "text": "They can hang upside down, fly, sink deep into the ground or enter the skies.",
+        "wordCount": 15,
+        "startOffsetSeconds": 0.25
+      },
+      "visual": {
+        "summary": "An animated interpretation of: They can hang upside down, fly, sink deep into the ground or enter the skies",
+        "locationId": null,
+        "settingDescription": "The location and period described or implied by the narration",
+        "entityIds": [],
+        "actions": [
+          {
+            "actionId": "scene_017_action_01",
+            "actorId": null,
+            "verb": "perform_story_beat",
+            "targetId": null,
+            "manner": "as described by the narration",
+            "description": "Show the central subject visibly acting out this story beat: They can hang upside down, fly, sink deep into the ground or enter the skies",
+            "startOffsetSeconds": 0.0,
+            "durationSeconds": 8.0
+          }
+        ],
+        "camera": {
+          "shotType": "medium",
+          "angle": "eye-level",
+          "movement": "tracking",
+          "subject": "the central subject",
+          "description": "medium tracking following the central action"
+        },
+        "look": {
+          "lighting": "motivated cinematic lighting appropriate to the time, place, and mood",
+          "mood": "emotionally faithful to this story beat"
+        },
+        "continuityNotes": "Preserve recurring characters, clothing, props, geography, and color palette"
+      },
+      "transitionIn": {
+        "type": "cut",
+        "description": "cut"
+      }
+    },
+    {
+      "sceneId": "scene_018",
+      "sequence": 18,
+      "startSeconds": 113.0,
+      "endSeconds": 120.0,
+      "durationSeconds": 7,
+      "seed": 1261483548,
+      "narration": {
+        "text": "If they want they can break into many pieces and then come together again.",
+        "wordCount": 14,
+        "startOffsetSeconds": 0.25
+      },
+      "visual": {
+        "summary": "An animated interpretation of: If they want they can break into many pieces and then come together again",
+        "locationId": null,
+        "settingDescription": "The location and period described or implied by the narration",
+        "entityIds": [],
+        "actions": [
+          {
+            "actionId": "scene_018_action_01",
+            "actorId": null,
+            "verb": "perform_story_beat",
+            "targetId": null,
+            "manner": "as described by the narration",
+            "description": "Show the central subject visibly acting out this story beat: If they want they can break into many pieces and then come together again",
+            "startOffsetSeconds": 0.0,
+            "durationSeconds": 7.0
+          }
+        ],
+        "camera": {
+          "shotType": "close-up",
+          "angle": "eye-level",
+          "movement": "subtle parallax",
+          "subject": "the central subject",
+          "description": "close-up subtle parallax following the central action"
+        },
+        "look": {
+          "lighting": "motivated cinematic lighting appropriate to the time, place, and mood",
+          "mood": "emotionally faithful to this story beat"
+        },
+        "continuityNotes": "Preserve recurring characters, clothing, props, geography, and color palette"
+      },
+      "transitionIn": {
+        "type": "dissolve",
+        "description": "dissolve"
+      }
+    },
+    {
+      "sceneId": "scene_019",
+      "sequence": 19,
+      "startSeconds": 120.0,
+      "endSeconds": 126.0,
+      "durationSeconds": 6,
+      "seed": 4091082397,
+      "narration": {
+        "text": "Why would they want to break into many pieces you say ?",
+        "wordCount": 11,
+        "startOffsetSeconds": 0.25
+      },
+      "visual": {
+        "summary": "An animated interpretation of: Why would they want to break into many pieces you say ",
+        "locationId": null,
+        "settingDescription": "The location and period described or implied by the narration",
+        "entityIds": [],
+        "actions": [
+          {
+            "actionId": "scene_019_action_01",
+            "actorId": null,
+            "verb": "perform_story_beat",
+            "targetId": null,
+            "manner": "as described by the narration",
+            "description": "Show the central subject visibly acting out this story beat: Why would they want to break into many pieces you say ",
+            "startOffsetSeconds": 0.0,
+            "durationSeconds": 6.0
+          }
+        ],
+        "camera": {
+          "shotType": "medium",
+          "angle": "three-quarter",
+          "movement": "gentle orbit",
+          "subject": "the central subject",
+          "description": "medium gentle orbit following the central action"
+        },
+        "look": {
+          "lighting": "motivated cinematic lighting appropriate to the time, place, and mood",
+          "mood": "emotionally faithful to this story beat"
+        },
+        "continuityNotes": "Preserve recurring characters, clothing, props, geography, and color palette"
+      },
+      "transitionIn": {
+        "type": "cut",
+        "description": "cut"
+      }
+    },
+    {
+      "sceneId": "scene_020",
+      "sequence": 20,
+      "startSeconds": 126.0,
+      "endSeconds": 138.0,
+      "durationSeconds": 12,
+      "seed": 2912806331,
+      "narration": {
+        "text": "Well if they break into 10 pieces and each piece falls from the sky saying \"wheeee\" with delight, then it becomes 10 times the fun!",
+        "wordCount": 25,
+        "startOffsetSeconds": 0.25
+      },
+      "visual": {
+        "summary": "An animated interpretation of: Well if they break into 10 pieces and each piece falls from the sky saying \"wheeee\" with delight, then it becomes 10 times the fun",
+        "locationId": null,
+        "settingDescription": "The location and period described or implied by the narration",
+        "entityIds": [],
+        "actions": [
+          {
+            "actionId": "scene_020_action_01",
+            "actorId": null,
+            "verb": "perform_story_beat",
+            "targetId": null,
+            "manner": "as described by the narration",
+            "description": "Show the central subject visibly acting out this story beat: Well if they break into 10 pieces and each piece falls from the sky saying \"wheeee\" with delight, then it becomes 10 times the fun",
+            "startOffsetSeconds": 0.0,
+            "durationSeconds": 12.0
+          }
+        ],
+        "camera": {
+          "shotType": "wide",
+          "angle": "high-angle",
+          "movement": "lower toward eye-level",
+          "subject": "the central subject",
+          "description": "wide lower toward eye-level following the central action"
+        },
+        "look": {
+          "lighting": "motivated cinematic lighting appropriate to the time, place, and mood",
+          "mood": "emotionally faithful to this story beat"
+        },
+        "continuityNotes": "Preserve recurring characters, clothing, props, geography, and color palette"
+      },
+      "transitionIn": {
+        "type": "match-cut",
+        "description": "match-cut"
+      }
+    }
+  ],
+  "timeline": {
+    "sceneOrder": [
+      "scene_001",
+      "scene_002",
+      "scene_003",
+      "scene_004",
+      "scene_005",
+      "scene_006",
+      "scene_007",
+      "scene_008",
+      "scene_009",
+      "scene_010",
+      "scene_011",
+      "scene_012",
+      "scene_013",
+      "scene_014",
+      "scene_015",
+      "scene_016",
+      "scene_017",
+      "scene_018",
+      "scene_019",
+      "scene_020"
+    ],
+    "narrationTrack": [
+      {
+        "sceneId": "scene_001",
+        "startSeconds": 0.25,
+        "gainDb": 0
+      },
+      {
+        "sceneId": "scene_002",
+        "startSeconds": 7.25,
+        "gainDb": 0
+      },
+      {
+        "sceneId": "scene_003",
+        "startSeconds": 13.25,
+        "gainDb": 0
+      },
+      {
+        "sceneId": "scene_004",
+        "startSeconds": 24.25,
+        "gainDb": 0
+      },
+      {
+        "sceneId": "scene_005",
+        "startSeconds": 29.25,
+        "gainDb": 0
+      },
+      {
+        "sceneId": "scene_006",
+        "startSeconds": 36.25,
+        "gainDb": 0
+      },
+      {
+        "sceneId": "scene_007",
+        "startSeconds": 45.25,
+        "gainDb": 0
+      },
+      {
+        "sceneId": "scene_008",
+        "startSeconds": 50.25,
+        "gainDb": 0
+      },
+      {
+        "sceneId": "scene_009",
+        "startSeconds": 57.25,
+        "gainDb": 0
+      },
+      {
+        "sceneId": "scene_010",
+        "startSeconds": 62.25,
+        "gainDb": 0
+      },
+      {
+        "sceneId": "scene_011",
+        "startSeconds": 68.25,
+        "gainDb": 0
+      },
+      {
+        "sceneId": "scene_012",
+        "startSeconds": 73.25,
+        "gainDb": 0
+      },
+      {
+        "sceneId": "scene_013",
+        "startSeconds": 81.25,
+        "gainDb": 0
+      },
+      {
+        "sceneId": "scene_014",
+        "startSeconds": 88.25,
+        "gainDb": 0
+      },
+      {
+        "sceneId": "scene_015",
+        "startSeconds": 91.25,
+        "gainDb": 0
+      },
+      {
+        "sceneId": "scene_016",
+        "startSeconds": 98.25,
+        "gainDb": 0
+      },
+      {
+        "sceneId": "scene_017",
+        "startSeconds": 105.25,
+        "gainDb": 0
+      },
+      {
+        "sceneId": "scene_018",
+        "startSeconds": 113.25,
+        "gainDb": 0
+      },
+      {
+        "sceneId": "scene_019",
+        "startSeconds": 120.25,
+        "gainDb": 0
+      },
+      {
+        "sceneId": "scene_020",
+        "startSeconds": 126.25,
+        "gainDb": 0
+      }
+    ],
+    "finalDurationSeconds": 138.0
+  }
+}

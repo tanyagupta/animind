@@ -1,4 +1,0 @@
-file '/Users/tanyagupta/animind/outputs/blender-ground-fix-v2/muxed/scene_001.mp4'
-file '/Users/tanyagupta/animind/outputs/blender-ground-fix-v2/muxed/scene_002.mp4'
-file '/Users/tanyagupta/animind/outputs/blender-ground-fix-v2/muxed/scene_003.mp4'
-file '/Users/tanyagupta/animind/outputs/blender-ground-fix-v2/muxed/scene_004.mp4'

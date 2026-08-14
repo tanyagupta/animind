@@ -1,0 +1,92 @@
+{
+  "schemaVersion": "2.0",
+  "fallbackPolicy": "warn",
+  "instructions": [
+    "Copy this file to blender_assets.json.",
+    "Download only the assets you want, update each local file and collection name, then change enabled to true.",
+    "Do not add Blender-specific fields to renderer_neutral_sb.json."
+  ],
+  "environment": {
+    "hdri": {
+      "enabled": false,
+      "provider": "Poly Haven",
+      "assetId": "qwantani_patio",
+      "assetPage": "https://polyhaven.com/a/qwantani_patio",
+      "license": "CC0",
+      "file": "assets/polyhaven/qwantani_patio_1k.hdr",
+      "strength": 0.65,
+      "rotationDegrees": 18
+    },
+    "groundMaterial": {
+      "enabled": false,
+      "provider": "Poly Haven",
+      "assetId": "concrete_floor",
+      "assetPage": "https://polyhaven.com/a/concrete_floor",
+      "license": "CC0",
+      "baseColor": "assets/polyhaven/concrete_floor_diff_1k.jpg",
+      "roughness": "assets/polyhaven/concrete_floor_rough_1k.jpg",
+      "normal": "assets/polyhaven/concrete_floor_nor_gl_1k.exr",
+      "height": "assets/polyhaven/concrete_floor_disp_1k.png",
+      "textureScale": 4.0,
+      "normalStrength": 0.7,
+      "heightStrength": 0.22,
+      "heightDistance": 0.035
+    }
+  },
+  "entities": {
+    "lanternfly_nymph": {
+      "enabled": false,
+      "provider": "Blendkit (formerly BlenderKit)",
+      "assetId": "e34efe7c-5d84-4182-a024-3089d31be245",
+      "assetPage": "https://www.blenderkit.com/asset-gallery-detail/e34efe7c-5d84-4182-a024-3089d31be245/",
+      "license": "Verify the asset license shown in Blendkit before use",
+      "file": "assets/blenderkit/lanternfly_walk.blend",
+      "format": "blend",
+      "collectionName": "Lanternfly",
+      "scale": 0.18,
+      "rotationDegrees": [0, 0, 0],
+      "locationOffset": [0, 0, 0],
+      "animation": {
+        "loop": true
+      },
+      "alternatives": [
+        "https://www.blenderkit.com/asset-gallery-detail/55629207-305b-4d2d-98fb-f1873711674f/",
+        "https://www.blenderkit.com/asset-gallery-detail/c4321265-d8cc-46ad-a2a0-5f17b640e08d/",
+        "https://www.blenderkit.com/asset-gallery-detail/cbb1efed-6f2d-4aa2-ae3e-871e005b17a1/"
+      ]
+    },
+    "laptop": {
+      "enabled": false,
+      "provider": "Blendkit (formerly BlenderKit)",
+      "assetId": "e5858511-f634-480e-a29c-3a9f11c64c51",
+      "assetPage": "https://www.blenderkit.com/asset-gallery-detail/e5858511-f634-480e-a29c-3a9f11c64c51/",
+      "license": "Verify the asset license shown in Blendkit before use",
+      "file": "assets/blenderkit/laptop.blend",
+      "format": "blend",
+      "collectionName": "Laptop",
+      "scale": 1.0,
+      "rotationDegrees": [0, 0, 0],
+      "locationOffset": [0, 0, 0]
+    },
+    "terrace_observer": {
+      "enabled": false,
+      "provider": "Adobe Mixamo",
+      "assetId": "replace-with-downloaded-character-and-animation",
+      "assetPage": "https://www.mixamo.com/",
+      "license": "Adobe Mixamo terms",
+      "file": "assets/mixamo/terrace_observer.fbx",
+      "format": "fbx",
+      "scale": 0.01,
+      "rotationDegrees": [0, 0, 0],
+      "locationOffset": [0, 0, 0],
+      "animation": {
+        "loop": true
+      }
+    }
+  },
+  "actionAliases": {
+    "scurry": "move",
+    "peer_around": "search",
+    "pick_up": "raise"
+  }
+}
