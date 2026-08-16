@@ -1,144 +1,75 @@
 {
   "schemaVersion": "1.0",
   "kind": "animind.renderer-neutral-storyboard",
-  "generatedAt": "2026-08-08T18:32:42.319869Z",
+  "generatedAt": "2026-08-16T18:38:18.489343Z",
   "source": {
-    "storyPath": "lanternfly.txt",
-    "wordCount": 68,
+    "storyPath": "/Users/tanyagupta/animind/bangla.txt",
+    "wordCount": 837,
     "narrationMode": "faithful-chunking",
-    "storyText": "A little brown insect crawls laboriously from one corner of my cement heavy terrace to another. I wonder what thoughts it [thinks], what are its goals and aspirations, its dreams and disappointments, its friends and enemies.\n\nI check my email, a friendly notice from the county pops up. “Vacuuming or squashing nymphs are the easiest way to reduce the population of spotted lanternfly, without using pesticide,” it said."
+    "storyText": "১৯২৯ সালের শীতকালের এক ভোরে হেমকান্ত চৌধুরির হাত থেকে দড়ি সমেত কুয়োর বালতি জলে পড়ে গেল। অসহনীয় শীতের সেই নিঝুম ব্রাহ্মমুহূর্তের অন্ধকারে হেমকান্ত অসহায়ভাবে দাঁড়িয়ে শুনলেন জলে দড়ি ও বালতির পড়া ও ডুবে যাওয়ার শব্দ। তাঁর জীবনে এরকম ঘটনা এই প্রথম।\n\nএকটু দূরে উঁচু বারান্দার ধারে হ্যারিকেনটা রাখা। তার আলো কুয়োর পাড়ে খুব ক্ষীণ হয়ে আসছে। হেমকান্ত সেই একটুখানি আলোয় নিজের দুখানা হাতের পাতার দিকে চেয়ে দেখলেন। এই বিশ্বস্ত হাত থেকে গতকাল পর্যন্ত কখনো কুয়োর বালতি পড়ে যায়নি।\n\nহেমকান্ত বিস্ময় ও অবিশ্বাসভাবে নিজের দুখানা হাতের দিকে চেয়ে রইলেন অনেকক্ষণ। তারপর সিদ্ধান্তে এলেন, তিনি বুড়ো হয়েছেন। যথেষ্ট বুড়ো।\n\nবাড়িতে দড়ি আছে, বালতি তোলার কাঁটাও মজুত। ইচ্ছে করলে হেমকান্ত কেউ জানবার আগেই বালতিটা তুলে ফেলতে পারতেন। কিন্তু সে চেষ্টা আর করলেন না। কেনই বা করবেন? জীবনের অনেক কাজকেই আজকাল তাঁর তুচ্ছ বলে মনে হয়।\n\n১৯২৯ বা তদানীন্তন কালে বয়স ত্রিশ পেরোলেই গড়পড়তা বাঙালি পুরুষ নিজেকে বুড়ো ভাবতেন। পঁয়ত্রিশ ছত্রিশ বছর বয়সে অনেকেরই নাতি-নাতনী হতে শুরু করত। কাজেই নিজেকে বুড়ো ভাবার দোষ ছিল না। সেই হিসাবে হেমকান্তকেও বুড়োর দলে ফেলা যায়। ঘটনার সময় তাঁর বয়স কমবেশি পঁয়তাল্লিশ। উনিশ বছর বয়সে তাঁর বিয়ে হয় কিশোরগঞ্জের মোক্তার সুধীর চক্রবর্তীর মেজো মেয়ে সুনয়নীর সঙ্গে। পঁয়ত্রিশ বছর বয়সেই তিনি ছয় সন্তানের জনক হন। সাঁইত্রিশে বিপত্নীক। তাঁর জ্যেষ্ঠ পুত্র কনককান্তির বয়স চব্বিশ। বিবাহিত এবং দুই সন্তানের পিতা। মেজো সন্তান মেয়ে সবিতা। তার বরিশালে বিয়ে হয়েছে। তৃতীয় জন ছেলে জীবকান্ত। সেও বিবাহিত, তবে সন্তান হয়নি। চতুর্থ ও পঞ্চম পর পর দুই মেয়ে ললিতা ও বিশাখা। ললিতার বিয়ে দিয়েছেন কলকাতায়। ষষ্ঠটি পুত্র সন্তান। বয়স দশের বেশি নয়। তার নাম প্রথমে রাখা হয়েছিল কৃষ্ণকান্তি। হেমকান্ত পরে নিজের নামের আদলে কান্তির বদলে কান্ত যোগ করায় এখন সে কৃষ্ণকান্ত। বিশাখা ও কৃষ্ণকান্ত ছাড়া হেমকান্তর কাছে কেউই থাকে না। প্রকাণ্ড বাড়ি হা-হা করে। আছে বিশ্বস্ত কয়েকজন দাস-দাসী, একটা বংশবদ দেশি হাউন্ড জাতীয় সরালে কুকুর। একটা বুড়ো ময়ূর। কয়েকটা পোষা পাখি। গোটা দশেক গরু। কয়েকটা কাবুলি বেড়াল।\n\nজমিদার সুলভ কোনও বদ অভ্যাস হেমকান্তর বংশে কারও নেই। হেমকান্তও সে-সবের ঊর্ধ্বে। মদ ছোঁন না, বাইজি নাচান না, ইয়াবরবও বিশেষ নেই। এমন কি পাশা তাস ইত্যাদিও নেশা নেই তাঁর। বড় ভাই বরদাকান্তর বাল্যকাল থেকেই একটা উদাসী ভাব ছিল। যৌবনে ভাল করে পা দেওয়ার আগেই সে একদল সন্ন্যাসীর সঙ্গে ভিড়ে নিরুদ্দেশ হয়ে যায়। বরদাকান্তর…"
   },
   "project": {
-    "title": "A Little Brown Insect Crosses the Terrace",
-    "visualStyle": "Cinematic animated film with realistic insect locomotion, subtly expressive body language, shallow-depth macro photography, polished natural lighting, and a restrained gray, brown, moss-green, and muted teal palette. Maintain coherent terrace geography and scale. No visible writing, captions, logos, or readable interface text.",
+    "title": "১৯২৯ স ল র শ তক ল র",
+    "visualStyle": "cinematic animated film, expressive characters, coherent production design, polished lighting, and natural motion",
     "frame": {
       "width": 1280,
       "height": 720,
       "aspectRatio": "16:9",
       "framesPerSecond": 24
     },
-    "estimatedDurationSeconds": 34.0,
-    "sceneCount": 4,
+    "estimatedDurationSeconds": 359.0,
+    "sceneCount": 11,
     "narrationWordsPerMinute": 145,
-    "baseSeed": 3744029602
+    "baseSeed": 2998545964
   },
   "planner": {
-    "type": "openai",
-    "model": "gpt-5.6"
+    "type": "local",
+    "model": null
   },
-  "entities": [
-    {
-      "entityId": "lanternfly_nymph",
-      "name": "Little Lanternfly Nymph",
-      "entityType": "creature",
-      "visualDescription": "Tiny brown-black nymph with faint cream speckles, six slender legs, short antennae, a segmented oval body, and slightly dusty wingless shell; movements are slow, deliberate, and physically effortful.",
-      "continuityNotes": "Keep identical body proportions, cream speckle pattern, dusty shell, and hesitant gait across all terrace scenes."
-    },
-    {
-      "entityId": "terrace_observer",
-      "name": "Terrace Observer",
-      "entityType": "person",
-      "visualDescription": "Adult seen only through medium-brown hands and forearms, with short clean nails and a muted teal cotton sleeve; movements are calm and curious.",
-      "continuityNotes": "Never reveal the observer's face; preserve the medium-brown hands, short nails, and muted teal sleeve."
-    },
-    {
-      "entityId": "concrete_seam",
-      "name": "Raised Concrete Seam",
-      "entityType": "environment feature",
-      "visualDescription": "A low rough ridge in the pale gray terrace concrete.",
-      "continuityNotes": "Keep its position fixed along the established terrace route."
-    },
-    {
-      "entityId": "pebble",
-      "name": "Terrace Pebble",
-      "entityType": "prop",
-      "visualDescription": "A small irregular gray-brown pebble beside a patch of moss.",
-      "continuityNotes": "Keep the same shape, scale, and position in scenes two and four."
-    },
-    {
-      "entityId": "laptop",
-      "name": "Laptop",
-      "entityType": "prop",
-      "visualDescription": "A slim laptop with a softly glowing screen and abstract unreadable interface symbols.",
-      "continuityNotes": "Show no readable text, brands, or logos."
-    },
-    {
-      "entityId": "vacuum_nozzle",
-      "name": "Compact Vacuum Nozzle",
-      "entityType": "prop",
-      "visualDescription": "A compact dark vacuum nozzle sized realistically against the observer’s hand.",
-      "continuityNotes": "Keep its shape and scale stable as it approaches the insect."
-    }
-  ],
-  "locations": [
-    {
-      "locationId": "terrace_route",
-      "name": "Urban Terrace Route",
-      "visualDescription": "A weathered urban terrace with pale gray cement, hairline cracks, scattered grit, a tiny moss patch, a small pebble, and distant soft-focus planters.",
-      "continuityNotes": "Maintain a coherent route from the shaded corner toward the sunlit planters."
-    },
-    {
-      "locationId": "terrace_door_table",
-      "name": "Table at the Terrace Door",
-      "visualDescription": "A small table just inside an open terrace door, with the established concrete terrace and planters visible beyond.",
-      "continuityNotes": "Preserve the doorway, table, terrace geography, and daylight direction."
-    }
-  ],
+  "entities": [],
+  "locations": [],
   "scenes": [
     {
       "sceneId": "scene_001",
       "sequence": 1,
       "startSeconds": 0.0,
-      "endSeconds": 8.0,
-      "durationSeconds": 8,
-      "seed": 3056193009,
+      "endSeconds": 40.0,
+      "durationSeconds": 40,
+      "seed": 1037105499,
       "narration": {
-        "text": "A little brown insect crawls laboriously from one corner of my cement heavy terrace to another.",
-        "wordCount": 16,
+        "text": "১৯২৯ সালের শীতকালের এক ভোরে হেমকান্ত চৌধুরির হাত থেকে দড়ি সমেত কুয়োর বালতি জলে পড়ে গেল। অসহনীয় শীতের সেই নিঝুম ব্রাহ্মমুহূর্তের অন্ধকারে হেমকান্ত অসহায়ভাবে দাঁড়িয়ে শুনলেন জলে দড়ি ও বালতির পড়া ও ডুবে যাওয়ার শব্দ। তাঁর জীবনে এরকম ঘটনা এই প্রথম।",
+        "wordCount": 94,
         "startOffsetSeconds": 0.25
       },
       "visual": {
-        "summary": "The tiny nymph struggles across a broad expanse of rough concrete.",
-        "locationId": "terrace_route",
-        "settingDescription": "A weathered urban terrace with pale gray cement, hairline cracks, scattered grit, and distant soft-focus planters.",
-        "entityIds": [
-          "lanternfly_nymph",
-          "concrete_seam"
-        ],
+        "summary": "An animated interpretation of: ১৯২৯ সালের শীতকালের এক ভোরে হেমকান্ত চৌধুরির হাত থেকে দড়ি সমেত কুয়োর বালতি জলে পড়ে গেল। অসহনীয় শীতের সেই নিঝুম ব্রাহ্মমুহূর্তের অন্ধকারে হেমকান্ত অসহায়ভাবে দাঁড়িয়ে শুনলেন জলে দড়ি ও বালতির পড়া ও ডুবে যাওয়ার শব্দ। তাঁর জীবনে এরকম ঘটনা এই প্রথম।",
+        "locationId": null,
+        "settingDescription": "The location and period described or implied by the narration",
+        "entityIds": [],
         "actions": [
           {
             "actionId": "scene_001_action_01",
-            "actorId": "lanternfly_nymph",
-            "verb": "crawl_over",
-            "targetId": "concrete_seam",
-            "manner": "slowly and laboriously",
-            "description": "The nymph slowly hauls itself over the raised concrete seam.",
-            "startOffsetSeconds": 0.0,
-            "durationSeconds": 4.0
-          },
-          {
-            "actionId": "scene_001_action_02",
-            "actorId": "lanternfly_nymph",
-            "verb": "slip_and_recover",
+            "actorId": null,
+            "verb": "perform_story_beat",
             "targetId": null,
-            "manner": "with visible effort",
-            "description": "Its legs slip once before it regains purchase and continues.",
-            "startOffsetSeconds": 4.0,
-            "durationSeconds": 4.0
+            "manner": "as described by the narration",
+            "description": "Show the central subject visibly acting out this story beat: ১৯২৯ সালের শীতকালের এক ভোরে হেমকান্ত চৌধুরির হাত থেকে দড়ি সমেত কুয়োর বালতি জলে পড়ে গেল। অসহনীয় শীতের সেই নিঝুম ব্রাহ্মমুহূর্তের অন্ধকারে হেমকান্ত অসহায়ভাবে দাঁড়িয়ে শুনলেন জলে দড়ি ও বালতির পড়া ও ডুবে যাওয়ার শব্দ। তাঁর জীবনে এরকম ঘটনা এই প্রথম।",
+            "startOffsetSeconds": 0.0,
+            "durationSeconds": 40.0
           }
         ],
         "camera": {
-          "shotType": "extreme macro",
-          "angle": "ground-level",
-          "movement": "steady tracking",
-          "subject": "the lanternfly nymph",
-          "description": "Ground-level extreme macro tracking beside the insect, moving steadily from the shaded corner toward the open terrace."
+          "shotType": "wide",
+          "angle": "eye-level",
+          "movement": "slow push-in",
+          "subject": "the central subject",
+          "description": "wide slow push-in following the central action"
         },
         "look": {
-          "lighting": "Soft morning sun cuts across cool shade, catching dust and the nymph's cream speckles.",
-          "mood": "Patient, intimate, and quietly heroic."
+          "lighting": "motivated cinematic lighting appropriate to the time, place, and mood",
+          "mood": "emotionally faithful to this story beat"
         },
-        "continuityNotes": "Show the tiny brown-black nymph with cream speckles, six slender legs, short antennae, dusty wingless shell, and hesitant gait; establish travel from the shaded corner toward the sunlit planters."
+        "continuityNotes": "Preserve recurring characters, clothing, props, geography, and color palette"
       },
       "transitionIn": {
         "type": "fade",
@@ -148,173 +79,471 @@
     {
       "sceneId": "scene_002",
       "sequence": 2,
-      "startSeconds": 8.0,
-      "endSeconds": 18.0,
-      "durationSeconds": 10,
-      "seed": 2083036562,
+      "startSeconds": 40.0,
+      "endSeconds": 77.0,
+      "durationSeconds": 37,
+      "seed": 3940457673,
       "narration": {
-        "text": "I wonder what thoughts it [thinks], what are its goals and aspirations, its dreams and disappointments, its friends and enemies.",
-        "wordCount": 20,
+        "text": "একটু দূরে উঁচু বারান্দার ধারে হ্যারিকেনটা রাখা। তার আলো কুয়োর পাড়ে খুব ক্ষীণ হয়ে আসছে। হেমকান্ত সেই একটুখানি আলোয় নিজের দুখানা হাতের পাতার দিকে চেয়ে দেখলেন। এই বিশ্বস্ত হাত থেকে গতকাল পর্যন্ত কখনো কুয়োর বালতি পড়ে যায়নি।",
+        "wordCount": 88,
         "startOffsetSeconds": 0.25
       },
       "visual": {
-        "summary": "The nymph climbs a pebble as the terrace becomes a vast, uncertain world around it.",
-        "locationId": "terrace_route",
-        "settingDescription": "The same terrace route near a tiny moss patch, with a warm planter ahead and blurred ant shapes moving far behind.",
-        "entityIds": [
-          "lanternfly_nymph",
-          "pebble"
-        ],
+        "summary": "An animated interpretation of: একটু দূরে উঁচু বারান্দার ধারে হ্যারিকেনটা রাখা। তার আলো কুয়োর পাড়ে খুব ক্ষীণ হয়ে আসছে। হেমকান্ত সেই একটুখানি আলোয় নিজের দুখানা হাতের পাতার দিকে চেয়ে দেখলেন। এই বিশ্বস্ত হাত থেকে গতকাল পর্যন্ত কখনো কুয়োর বালতি পড়ে যায়নি।",
+        "locationId": null,
+        "settingDescription": "The location and period described or implied by the narration",
+        "entityIds": [],
         "actions": [
           {
             "actionId": "scene_002_action_01",
-            "actorId": "lanternfly_nymph",
-            "verb": "climb",
-            "targetId": "pebble",
-            "manner": "hesitantly",
-            "description": "The nymph climbs to the pebble’s crest.",
-            "startOffsetSeconds": 0.0,
-            "durationSeconds": 5.0
-          },
-          {
-            "actionId": "scene_002_action_02",
-            "actorId": "lanternfly_nymph",
-            "verb": "pause_and_search",
+            "actorId": null,
+            "verb": "perform_story_beat",
             "targetId": null,
-            "manner": "with searching antennae",
-            "description": "It pauses, searches with its antennae, and leans toward the distant planter.",
-            "startOffsetSeconds": 5.0,
-            "durationSeconds": 5.0
+            "manner": "as described by the narration",
+            "description": "Show the central subject visibly acting out this story beat: একটু দূরে উঁচু বারান্দার ধারে হ্যারিকেনটা রাখা। তার আলো কুয়োর পাড়ে খুব ক্ষীণ হয়ে আসছে। হেমকান্ত সেই একটুখানি আলোয় নিজের দুখানা হাতের পাতার দিকে চেয়ে দেখলেন। এই বিশ্বস্ত হাত থেকে গতকাল পর্যন্ত কখনো কুয়োর বালতি পড়ে যায়নি।",
+            "startOffsetSeconds": 0.0,
+            "durationSeconds": 37.0
           }
         ],
         "camera": {
-          "shotType": "macro close-up",
-          "angle": "low angle",
-          "movement": "slow orbit from behind to front",
-          "subject": "the lanternfly nymph",
-          "description": "Slow macro orbit from behind to a low frontal close-up, keeping the insect dominant while the immense terrace falls out of focus."
+          "shotType": "medium",
+          "angle": "eye-level",
+          "movement": "tracking",
+          "subject": "the central subject",
+          "description": "medium tracking following the central action"
         },
         "look": {
-          "lighting": "Warm sunlight rims the shell while long, soft shadows suggest both shelter and danger.",
-          "mood": "Contemplative, hopeful, and faintly vulnerable."
+          "lighting": "motivated cinematic lighting appropriate to the time, place, and mood",
+          "mood": "emotionally faithful to this story beat"
         },
-        "continuityNotes": "Preserve the nymph's brown-black body, cream speckles, six slender legs, short antennae, dusty shell, and hesitant gait; it remains on the established route toward the planters."
+        "continuityNotes": "Preserve recurring characters, clothing, props, geography, and color palette"
       },
       "transitionIn": {
-        "type": "custom",
-        "description": "Rack focus from the nymph's searching antennae to a softly glowing laptop beyond the terrace doorway."
+        "type": "cut",
+        "description": "cut"
       }
     },
     {
       "sceneId": "scene_003",
       "sequence": 3,
-      "startSeconds": 18.0,
-      "endSeconds": 24.0,
-      "durationSeconds": 6,
-      "seed": 2723730286,
+      "startSeconds": 77.0,
+      "endSeconds": 95.0,
+      "durationSeconds": 18,
+      "seed": 70248110,
       "narration": {
-        "text": "I check my email, a friendly notice from the county pops up.",
-        "wordCount": 12,
+        "text": "হেমকান্ত বিস্ময় ও অবিশ্বাসভাবে নিজের দুখানা হাতের দিকে চেয়ে রইলেন অনেকক্ষণ। তারপর সিদ্ধান্তে এলেন,",
+        "wordCount": 40,
         "startOffsetSeconds": 0.25
       },
       "visual": {
-        "summary": "The observer checks a new civic notification on a laptop.",
-        "locationId": "terrace_door_table",
-        "settingDescription": "A small table just inside the open terrace door, with the same concrete and planters visible beyond.",
-        "entityIds": [
-          "terrace_observer",
-          "laptop"
-        ],
+        "summary": "An animated interpretation of: হেমকান্ত বিস্ময় ও অবিশ্বাসভাবে নিজের দুখানা হাতের দিকে চেয়ে রইলেন অনেকক্ষণ। তারপর সিদ্ধান্তে এলেন,",
+        "locationId": null,
+        "settingDescription": "The location and period described or implied by the narration",
+        "entityIds": [],
         "actions": [
           {
             "actionId": "scene_003_action_01",
-            "actorId": "terrace_observer",
-            "verb": "tap",
-            "targetId": "laptop",
-            "manner": "calmly",
-            "description": "The observer taps the laptop trackpad and opens an abstract civic notification with no readable text.",
+            "actorId": null,
+            "verb": "perform_story_beat",
+            "targetId": null,
+            "manner": "as described by the narration",
+            "description": "Show the central subject visibly acting out this story beat: হেমকান্ত বিস্ময় ও অবিশ্বাসভাবে নিজের দুখানা হাতের দিকে চেয়ে রইলেন অনেকক্ষণ। তারপর সিদ্ধান্তে এলেন,",
             "startOffsetSeconds": 0.0,
-            "durationSeconds": 6.0
+            "durationSeconds": 18.0
           }
         ],
         "camera": {
           "shotType": "close-up",
-          "angle": "over-the-shoulder",
-          "movement": "gentle push-in",
-          "subject": "the observer’s hand and laptop",
-          "description": "Over-the-shoulder close shot with a gentle push toward the screen; all interface elements remain symbolic and unreadable."
+          "angle": "eye-level",
+          "movement": "subtle parallax",
+          "subject": "the central subject",
+          "description": "close-up subtle parallax following the central action"
         },
         "look": {
-          "lighting": "Balanced daylight from the terrace mixes with a soft warm glow from the laptop.",
-          "mood": "Ordinary, calm, and deceptively reassuring."
+          "lighting": "motivated cinematic lighting appropriate to the time, place, and mood",
+          "mood": "emotionally faithful to this story beat"
         },
-        "continuityNotes": "Show only the observer's medium-brown hand, short clean nails, and muted teal sleeve; the same terrace remains visible outside, with no readable text or recognizable logos."
+        "continuityNotes": "Preserve recurring characters, clothing, props, geography, and color palette"
       },
       "transitionIn": {
-        "type": "custom",
-        "description": "The camera pushes through the notification's simple insect pictogram into a matching macro view of the real terrace."
+        "type": "dissolve",
+        "description": "dissolve"
       }
     },
     {
       "sceneId": "scene_004",
       "sequence": 4,
-      "startSeconds": 24.0,
-      "endSeconds": 34.0,
-      "durationSeconds": 10,
-      "seed": 1198189685,
+      "startSeconds": 95.0,
+      "endSeconds": 101.0,
+      "durationSeconds": 6,
+      "seed": 2119257082,
       "narration": {
-        "text": "“Vacuuming or squashing nymphs are the easiest way to reduce the population of spotted lanternfly, without using pesticide,” it said.",
-        "wordCount": 20,
+        "text": "তিনি বুড়ো হয়েছেন। যথেষ্ট বুড়ো।",
+        "wordCount": 12,
         "startOffsetSeconds": 0.25
       },
       "visual": {
-        "summary": "A vacuum nozzle advances toward the same nymph on the concrete.",
-        "locationId": "terrace_route",
-        "settingDescription": "The established terrace route beside the pebble and moss patch, now viewed from just above ground level.",
-        "entityIds": [
-          "lanternfly_nymph",
-          "terrace_observer",
-          "pebble",
-          "vacuum_nozzle"
-        ],
+        "summary": "An animated interpretation of: তিনি বুড়ো হয়েছেন। যথেষ্ট বুড়ো।",
+        "locationId": null,
+        "settingDescription": "The location and period described or implied by the narration",
+        "entityIds": [],
         "actions": [
           {
             "actionId": "scene_004_action_01",
-            "actorId": "terrace_observer",
-            "verb": "lower",
-            "targetId": "vacuum_nozzle",
-            "manner": "steadily",
-            "description": "The observer lowers the compact vacuum nozzle toward the motionless nymph, stopping inches above it.",
-            "startOffsetSeconds": 0.0,
-            "durationSeconds": 5.0
-          },
-          {
-            "actionId": "scene_004_action_02",
-            "actorId": "lanternfly_nymph",
-            "verb": "twitch_antennae",
+            "actorId": null,
+            "verb": "perform_story_beat",
             "targetId": null,
-            "manner": "subtly",
-            "description": "The nymph remains still except for a small twitch of its antennae.",
-            "startOffsetSeconds": 5.0,
-            "durationSeconds": 5.0
+            "manner": "as described by the narration",
+            "description": "Show the central subject visibly acting out this story beat: তিনি বুড়ো হয়েছেন। যথেষ্ট বুড়ো।",
+            "startOffsetSeconds": 0.0,
+            "durationSeconds": 6.0
           }
         ],
         "camera": {
-          "shotType": "macro close-up",
-          "angle": "just above ground level",
-          "movement": "slow lateral dolly",
-          "subject": "the nymph and descending nozzle",
-          "description": "Slow lateral dolly placing the nymph in sharp foreground and the descending nozzle as an enlarging dark shape behind it."
+          "shotType": "medium",
+          "angle": "three-quarter",
+          "movement": "gentle orbit",
+          "subject": "the central subject",
+          "description": "medium gentle orbit following the central action"
         },
         "look": {
-          "lighting": "Sunlight is partially blocked by the nozzle, casting a cool shadow over the insect while the planter remains warmly lit ahead.",
-          "mood": "Tense, ironic, and morally uneasy."
+          "lighting": "motivated cinematic lighting appropriate to the time, place, and mood",
+          "mood": "emotionally faithful to this story beat"
         },
-        "continuityNotes": "Use the same brown-black nymph with cream speckles, six slender legs, short antennae, and dusty shell beside the established pebble; the observer retains medium-brown hands, short nails, and muted teal sleeve."
+        "continuityNotes": "Preserve recurring characters, clothing, props, geography, and color palette"
+      },
+      "transitionIn": {
+        "type": "cut",
+        "description": "cut"
+      }
+    },
+    {
+      "sceneId": "scene_005",
+      "sequence": 5,
+      "startSeconds": 101.0,
+      "endSeconds": 133.0,
+      "durationSeconds": 32,
+      "seed": 2573058992,
+      "narration": {
+        "text": "বাড়িতে দড়ি আছে, বালতি তোলার কাঁটাও মজুত। ইচ্ছে করলে হেমকান্ত কেউ জানবার আগেই বালতিটা তুলে ফেলতে পারতেন। কিন্তু সে চেষ্টা আর করলেন না। কেনই বা করবেন? জীবনের অনেক কাজকেই আজকাল তাঁর তুচ্ছ বলে মনে হয়।",
+        "wordCount": 73,
+        "startOffsetSeconds": 0.25
+      },
+      "visual": {
+        "summary": "An animated interpretation of: বাড়িতে দড়ি আছে, বালতি তোলার কাঁটাও মজুত। ইচ্ছে করলে হেমকান্ত কেউ জানবার আগেই বালতিটা তুলে ফেলতে পারতেন। কিন্তু সে চেষ্টা আর করলেন না। কেনই বা করবেন? জীবনের অনেক কাজকেই আজকাল তাঁর তুচ্ছ বলে মনে হয়।",
+        "locationId": null,
+        "settingDescription": "The location and period described or implied by the narration",
+        "entityIds": [],
+        "actions": [
+          {
+            "actionId": "scene_005_action_01",
+            "actorId": null,
+            "verb": "perform_story_beat",
+            "targetId": null,
+            "manner": "as described by the narration",
+            "description": "Show the central subject visibly acting out this story beat: বাড়িতে দড়ি আছে, বালতি তোলার কাঁটাও মজুত। ইচ্ছে করলে হেমকান্ত কেউ জানবার আগেই বালতিটা তুলে ফেলতে পারতেন। কিন্তু সে চেষ্টা আর করলেন না। কেনই বা করবেন? জীবনের অনেক কাজকেই আজকাল তাঁর তুচ্ছ বলে মনে হয়।",
+            "startOffsetSeconds": 0.0,
+            "durationSeconds": 32.0
+          }
+        ],
+        "camera": {
+          "shotType": "wide",
+          "angle": "high-angle",
+          "movement": "lower toward eye-level",
+          "subject": "the central subject",
+          "description": "wide lower toward eye-level following the central action"
+        },
+        "look": {
+          "lighting": "motivated cinematic lighting appropriate to the time, place, and mood",
+          "mood": "emotionally faithful to this story beat"
+        },
+        "continuityNotes": "Preserve recurring characters, clothing, props, geography, and color palette"
+      },
+      "transitionIn": {
+        "type": "match-cut",
+        "description": "match-cut"
+      }
+    },
+    {
+      "sceneId": "scene_006",
+      "sequence": 6,
+      "startSeconds": 133.0,
+      "endSeconds": 180.0,
+      "durationSeconds": 47,
+      "seed": 2750612749,
+      "narration": {
+        "text": "১৯২৯ বা তদানীন্তন কালে বয়স ত্রিশ পেরোলেই গড়পড়তা বাঙালি পুরুষ নিজেকে বুড়ো ভাবতেন। পঁয়ত্রিশ ছত্রিশ বছর বয়সে অনেকেরই নাতি-নাতনী হতে শুরু করত। কাজেই নিজেকে বুড়ো ভাবার দোষ ছিল না। সেই হিসাবে হেমকান্তকেও বুড়োর দলে ফেলা যায়। ঘটনার সময় তাঁর বয়স কমবেশি পঁয়তাল্লিশ। উনিশ বছর বয়সে",
+        "wordCount": 110,
+        "startOffsetSeconds": 0.25
+      },
+      "visual": {
+        "summary": "An animated interpretation of: ১৯২৯ বা তদানীন্তন কালে বয়স ত্রিশ পেরোলেই গড়পড়তা বাঙালি পুরুষ নিজেকে বুড়ো ভাবতেন। পঁয়ত্রিশ ছত্রিশ বছর বয়সে অনেকেরই নাতি-নাতনী হতে শুরু করত। কাজেই নিজেকে বুড়ো ভাবার দোষ ছিল না। সেই হিসাবে হেমকান্তকেও বুড়োর দলে ফেলা যায়। ঘটনার সময় তাঁর বয়স কমবেশি পঁয়তাল্লিশ। উনিশ বছর বয়সে",
+        "locationId": null,
+        "settingDescription": "The location and period described or implied by the narration",
+        "entityIds": [],
+        "actions": [
+          {
+            "actionId": "scene_006_action_01",
+            "actorId": null,
+            "verb": "perform_story_beat",
+            "targetId": null,
+            "manner": "as described by the narration",
+            "description": "Show the central subject visibly acting out this story beat: ১৯২৯ বা তদানীন্তন কালে বয়স ত্রিশ পেরোলেই গড়পড়তা বাঙালি পুরুষ নিজেকে বুড়ো ভাবতেন। পঁয়ত্রিশ ছত্রিশ বছর বয়সে অনেকেরই নাতি-নাতনী হতে শুরু করত। কাজেই নিজেকে বুড়ো ভাবার দোষ ছিল না। সেই হিসাবে হেমকান্তকেও বুড়োর দলে ফেলা যায়। ঘটনার সময় তাঁর বয়স কমবেশি পঁয়তাল্লিশ। উনিশ বছর বয়সে",
+            "startOffsetSeconds": 0.0,
+            "durationSeconds": 47.0
+          }
+        ],
+        "camera": {
+          "shotType": "wide",
+          "angle": "eye-level",
+          "movement": "slow push-in",
+          "subject": "the central subject",
+          "description": "wide slow push-in following the central action"
+        },
+        "look": {
+          "lighting": "motivated cinematic lighting appropriate to the time, place, and mood",
+          "mood": "emotionally faithful to this story beat"
+        },
+        "continuityNotes": "Preserve recurring characters, clothing, props, geography, and color palette"
       },
       "transitionIn": {
         "type": "fade",
-        "description": "Hold on the tiny nymph beneath the looming nozzle, then fade to black before contact."
+        "description": "fade"
+      }
+    },
+    {
+      "sceneId": "scene_007",
+      "sequence": 7,
+      "startSeconds": 180.0,
+      "endSeconds": 230.0,
+      "durationSeconds": 50,
+      "seed": 2844388328,
+      "narration": {
+        "text": "তাঁর বিয়ে হয় কিশোরগঞ্জের মোক্তার সুধীর চক্রবর্তীর মেজো মেয়ে সুনয়নীর সঙ্গে। পঁয়ত্রিশ বছর বয়সেই তিনি ছয় সন্তানের জনক হন। সাঁইত্রিশে বিপত্নীক। তাঁর জ্যেষ্ঠ পুত্র কনককান্তির বয়স চব্বিশ। বিবাহিত এবং দুই সন্তানের পিতা। মেজো সন্তান মেয়ে সবিতা। তার বরিশালে বিয়ে হয়েছে। তৃতীয় জন ছেলে জীবকান্ত। সেও",
+        "wordCount": 118,
+        "startOffsetSeconds": 0.25
+      },
+      "visual": {
+        "summary": "An animated interpretation of: তাঁর বিয়ে হয় কিশোরগঞ্জের মোক্তার সুধীর চক্রবর্তীর মেজো মেয়ে সুনয়নীর সঙ্গে। পঁয়ত্রিশ বছর বয়সেই তিনি ছয় সন্তানের জনক হন। সাঁইত্রিশে বিপত্নীক। তাঁর জ্যেষ্ঠ পুত্র কনককান্তির বয়স চব্বিশ। বিবাহিত এবং দুই সন্তানের পিতা। মেজো সন্তান মেয়ে সবিতা। তার বরিশালে বিয়ে হয়েছে। তৃতীয় জন ছেলে জীবকান্ত। সেও",
+        "locationId": null,
+        "settingDescription": "The location and period described or implied by the narration",
+        "entityIds": [],
+        "actions": [
+          {
+            "actionId": "scene_007_action_01",
+            "actorId": null,
+            "verb": "perform_story_beat",
+            "targetId": null,
+            "manner": "as described by the narration",
+            "description": "Show the central subject visibly acting out this story beat: তাঁর বিয়ে হয় কিশোরগঞ্জের মোক্তার সুধীর চক্রবর্তীর মেজো মেয়ে সুনয়নীর সঙ্গে। পঁয়ত্রিশ বছর বয়সেই তিনি ছয় সন্তানের জনক হন। সাঁইত্রিশে বিপত্নীক। তাঁর জ্যেষ্ঠ পুত্র কনককান্তির বয়স চব্বিশ। বিবাহিত এবং দুই সন্তানের পিতা। মেজো সন্তান মেয়ে সবিতা। তার বরিশালে বিয়ে হয়েছে। তৃতীয় জন ছেলে জীবকান্ত। সেও",
+            "startOffsetSeconds": 0.0,
+            "durationSeconds": 50.0
+          }
+        ],
+        "camera": {
+          "shotType": "medium",
+          "angle": "eye-level",
+          "movement": "tracking",
+          "subject": "the central subject",
+          "description": "medium tracking following the central action"
+        },
+        "look": {
+          "lighting": "motivated cinematic lighting appropriate to the time, place, and mood",
+          "mood": "emotionally faithful to this story beat"
+        },
+        "continuityNotes": "Preserve recurring characters, clothing, props, geography, and color palette"
+      },
+      "transitionIn": {
+        "type": "cut",
+        "description": "cut"
+      }
+    },
+    {
+      "sceneId": "scene_008",
+      "sequence": 8,
+      "startSeconds": 230.0,
+      "endSeconds": 275.0,
+      "durationSeconds": 45,
+      "seed": 636030672,
+      "narration": {
+        "text": "বিবাহিত, তবে সন্তান হয়নি। চতুর্থ ও পঞ্চম পর পর দুই মেয়ে ললিতা ও বিশাখা। ললিতার বিয়ে দিয়েছেন কলকাতায়। ষষ্ঠটি পুত্র সন্তান। বয়স দশের বেশি নয়। তার নাম প্রথমে রাখা হয়েছিল কৃষ্ণকান্তি। হেমকান্ত পরে নিজের নামের আদলে কান্তির বদলে কান্ত যোগ করায় এখন সে কৃষ্ণকান্ত। বিশাখা",
+        "wordCount": 105,
+        "startOffsetSeconds": 0.25
+      },
+      "visual": {
+        "summary": "An animated interpretation of: বিবাহিত, তবে সন্তান হয়নি। চতুর্থ ও পঞ্চম পর পর দুই মেয়ে ললিতা ও বিশাখা। ললিতার বিয়ে দিয়েছেন কলকাতায়। ষষ্ঠটি পুত্র সন্তান। বয়স দশের বেশি নয়। তার নাম প্রথমে রাখা হয়েছিল কৃষ্ণকান্তি। হেমকান্ত পরে নিজের নামের আদলে কান্তির বদলে কান্ত যোগ করায় এখন সে কৃষ্ণকান্ত। বিশাখা",
+        "locationId": null,
+        "settingDescription": "The location and period described or implied by the narration",
+        "entityIds": [],
+        "actions": [
+          {
+            "actionId": "scene_008_action_01",
+            "actorId": null,
+            "verb": "perform_story_beat",
+            "targetId": null,
+            "manner": "as described by the narration",
+            "description": "Show the central subject visibly acting out this story beat: বিবাহিত, তবে সন্তান হয়নি। চতুর্থ ও পঞ্চম পর পর দুই মেয়ে ললিতা ও বিশাখা। ললিতার বিয়ে দিয়েছেন কলকাতায়। ষষ্ঠটি পুত্র সন্তান। বয়স দশের বেশি নয়। তার নাম প্রথমে রাখা হয়েছিল কৃষ্ণকান্তি। হেমকান্ত পরে নিজের নামের আদলে কান্তির বদলে কান্ত যোগ করায় এখন সে কৃষ্ণকান্ত। বিশাখা",
+            "startOffsetSeconds": 0.0,
+            "durationSeconds": 45.0
+          }
+        ],
+        "camera": {
+          "shotType": "close-up",
+          "angle": "eye-level",
+          "movement": "subtle parallax",
+          "subject": "the central subject",
+          "description": "close-up subtle parallax following the central action"
+        },
+        "look": {
+          "lighting": "motivated cinematic lighting appropriate to the time, place, and mood",
+          "mood": "emotionally faithful to this story beat"
+        },
+        "continuityNotes": "Preserve recurring characters, clothing, props, geography, and color palette"
+      },
+      "transitionIn": {
+        "type": "dissolve",
+        "description": "dissolve"
+      }
+    },
+    {
+      "sceneId": "scene_009",
+      "sequence": 9,
+      "startSeconds": 275.0,
+      "endSeconds": 308.0,
+      "durationSeconds": 33,
+      "seed": 913275093,
+      "narration": {
+        "text": "ও কৃষ্ণকান্ত ছাড়া হেমকান্তর কাছে কেউই থাকে না। প্রকাণ্ড বাড়ি হা-হা করে। আছে বিশ্বস্ত কয়েকজন দাস-দাসী, একটা বংশবদ দেশি হাউন্ড জাতীয় সরালে কুকুর। একটা বুড়ো ময়ূর। কয়েকটা পোষা পাখি। গোটা দশেক গরু। কয়েকটা কাবুলি বেড়াল।",
+        "wordCount": 78,
+        "startOffsetSeconds": 0.25
+      },
+      "visual": {
+        "summary": "An animated interpretation of: ও কৃষ্ণকান্ত ছাড়া হেমকান্তর কাছে কেউই থাকে না। প্রকাণ্ড বাড়ি হা-হা করে। আছে বিশ্বস্ত কয়েকজন দাস-দাসী, একটা বংশবদ দেশি হাউন্ড জাতীয় সরালে কুকুর। একটা বুড়ো ময়ূর। কয়েকটা পোষা পাখি। গোটা দশেক গরু। কয়েকটা কাবুলি বেড়াল।",
+        "locationId": null,
+        "settingDescription": "The location and period described or implied by the narration",
+        "entityIds": [],
+        "actions": [
+          {
+            "actionId": "scene_009_action_01",
+            "actorId": null,
+            "verb": "perform_story_beat",
+            "targetId": null,
+            "manner": "as described by the narration",
+            "description": "Show the central subject visibly acting out this story beat: ও কৃষ্ণকান্ত ছাড়া হেমকান্তর কাছে কেউই থাকে না। প্রকাণ্ড বাড়ি হা-হা করে। আছে বিশ্বস্ত কয়েকজন দাস-দাসী, একটা বংশবদ দেশি হাউন্ড জাতীয় সরালে কুকুর। একটা বুড়ো ময়ূর। কয়েকটা পোষা পাখি। গোটা দশেক গরু। কয়েকটা কাবুলি বেড়াল।",
+            "startOffsetSeconds": 0.0,
+            "durationSeconds": 33.0
+          }
+        ],
+        "camera": {
+          "shotType": "medium",
+          "angle": "three-quarter",
+          "movement": "gentle orbit",
+          "subject": "the central subject",
+          "description": "medium gentle orbit following the central action"
+        },
+        "look": {
+          "lighting": "motivated cinematic lighting appropriate to the time, place, and mood",
+          "mood": "emotionally faithful to this story beat"
+        },
+        "continuityNotes": "Preserve recurring characters, clothing, props, geography, and color palette"
+      },
+      "transitionIn": {
+        "type": "cut",
+        "description": "cut"
+      }
+    },
+    {
+      "sceneId": "scene_010",
+      "sequence": 10,
+      "startSeconds": 308.0,
+      "endSeconds": 349.0,
+      "durationSeconds": 41,
+      "seed": 1668154570,
+      "narration": {
+        "text": "জমিদার সুলভ কোনও বদ অভ্যাস হেমকান্তর বংশে কারও নেই। হেমকান্তও সে-সবের ঊর্ধ্বে। মদ ছোঁন না, বাইজি নাচান না, ইয়াবরবও বিশেষ নেই। এমন কি পাশা তাস ইত্যাদিও নেশা নেই তাঁর। বড় ভাই বরদাকান্তর বাল্যকাল থেকেই একটা উদাসী ভাব ছিল। যৌবনে ভাল করে পা দেওয়ার আগেই সে",
+        "wordCount": 97,
+        "startOffsetSeconds": 0.25
+      },
+      "visual": {
+        "summary": "An animated interpretation of: জমিদার সুলভ কোনও বদ অভ্যাস হেমকান্তর বংশে কারও নেই। হেমকান্তও সে-সবের ঊর্ধ্বে। মদ ছোঁন না, বাইজি নাচান না, ইয়াবরবও বিশেষ নেই। এমন কি পাশা তাস ইত্যাদিও নেশা নেই তাঁর। বড় ভাই বরদাকান্তর বাল্যকাল থেকেই একটা উদাসী ভাব ছিল। যৌবনে ভাল করে পা দেওয়ার আগেই সে",
+        "locationId": null,
+        "settingDescription": "The location and period described or implied by the narration",
+        "entityIds": [],
+        "actions": [
+          {
+            "actionId": "scene_010_action_01",
+            "actorId": null,
+            "verb": "perform_story_beat",
+            "targetId": null,
+            "manner": "as described by the narration",
+            "description": "Show the central subject visibly acting out this story beat: জমিদার সুলভ কোনও বদ অভ্যাস হেমকান্তর বংশে কারও নেই। হেমকান্তও সে-সবের ঊর্ধ্বে। মদ ছোঁন না, বাইজি নাচান না, ইয়াবরবও বিশেষ নেই। এমন কি পাশা তাস ইত্যাদিও নেশা নেই তাঁর। বড় ভাই বরদাকান্তর বাল্যকাল থেকেই একটা উদাসী ভাব ছিল। যৌবনে ভাল করে পা দেওয়ার আগেই সে",
+            "startOffsetSeconds": 0.0,
+            "durationSeconds": 41.0
+          }
+        ],
+        "camera": {
+          "shotType": "wide",
+          "angle": "high-angle",
+          "movement": "lower toward eye-level",
+          "subject": "the central subject",
+          "description": "wide lower toward eye-level following the central action"
+        },
+        "look": {
+          "lighting": "motivated cinematic lighting appropriate to the time, place, and mood",
+          "mood": "emotionally faithful to this story beat"
+        },
+        "continuityNotes": "Preserve recurring characters, clothing, props, geography, and color palette"
+      },
+      "transitionIn": {
+        "type": "match-cut",
+        "description": "match-cut"
+      }
+    },
+    {
+      "sceneId": "scene_011",
+      "sequence": 11,
+      "startSeconds": 349.0,
+      "endSeconds": 359.0,
+      "durationSeconds": 10,
+      "seed": 2629564901,
+      "narration": {
+        "text": "একদল সন্ন্যাসীর সঙ্গে ভিড়ে নিরুদ্দেশ হয়ে যায়। বরদাকান্তর…",
+        "wordCount": 22,
+        "startOffsetSeconds": 0.25
+      },
+      "visual": {
+        "summary": "An animated interpretation of: একদল সন্ন্যাসীর সঙ্গে ভিড়ে নিরুদ্দেশ হয়ে যায়। বরদাকান্তর…",
+        "locationId": null,
+        "settingDescription": "The location and period described or implied by the narration",
+        "entityIds": [],
+        "actions": [
+          {
+            "actionId": "scene_011_action_01",
+            "actorId": null,
+            "verb": "perform_story_beat",
+            "targetId": null,
+            "manner": "as described by the narration",
+            "description": "Show the central subject visibly acting out this story beat: একদল সন্ন্যাসীর সঙ্গে ভিড়ে নিরুদ্দেশ হয়ে যায়। বরদাকান্তর…",
+            "startOffsetSeconds": 0.0,
+            "durationSeconds": 10.0
+          }
+        ],
+        "camera": {
+          "shotType": "wide",
+          "angle": "eye-level",
+          "movement": "slow push-in",
+          "subject": "the central subject",
+          "description": "wide slow push-in following the central action"
+        },
+        "look": {
+          "lighting": "motivated cinematic lighting appropriate to the time, place, and mood",
+          "mood": "emotionally faithful to this story beat"
+        },
+        "continuityNotes": "Preserve recurring characters, clothing, props, geography, and color palette"
+      },
+      "transitionIn": {
+        "type": "fade",
+        "description": "fade"
       }
     }
   ],
@@ -323,7 +552,14 @@
       "scene_001",
       "scene_002",
       "scene_003",
-      "scene_004"
+      "scene_004",
+      "scene_005",
+      "scene_006",
+      "scene_007",
+      "scene_008",
+      "scene_009",
+      "scene_010",
+      "scene_011"
     ],
     "narrationTrack": [
       {
@@ -333,20 +569,55 @@
       },
       {
         "sceneId": "scene_002",
-        "startSeconds": 8.25,
+        "startSeconds": 40.25,
         "gainDb": 0
       },
       {
         "sceneId": "scene_003",
-        "startSeconds": 18.25,
+        "startSeconds": 77.25,
         "gainDb": 0
       },
       {
         "sceneId": "scene_004",
-        "startSeconds": 24.25,
+        "startSeconds": 95.25,
+        "gainDb": 0
+      },
+      {
+        "sceneId": "scene_005",
+        "startSeconds": 101.25,
+        "gainDb": 0
+      },
+      {
+        "sceneId": "scene_006",
+        "startSeconds": 133.25,
+        "gainDb": 0
+      },
+      {
+        "sceneId": "scene_007",
+        "startSeconds": 180.25,
+        "gainDb": 0
+      },
+      {
+        "sceneId": "scene_008",
+        "startSeconds": 230.25,
+        "gainDb": 0
+      },
+      {
+        "sceneId": "scene_009",
+        "startSeconds": 275.25,
+        "gainDb": 0
+      },
+      {
+        "sceneId": "scene_010",
+        "startSeconds": 308.25,
+        "gainDb": 0
+      },
+      {
+        "sceneId": "scene_011",
+        "startSeconds": 349.25,
         "gainDb": 0
       }
     ],
-    "finalDurationSeconds": 34.0
+    "finalDurationSeconds": 359.0
   }
 }

@@ -1,0 +1,93 @@
+{
+  "schemaVersion": "1.0",
+  "kind": "animind.renderer-neutral-storyboard",
+  "generatedAt": "2026-08-16T18:45:44.104012Z",
+  "source": {
+    "storyPath": "/Users/tanyagupta/animind/bangla_30s.txt",
+    "wordCount": 75,
+    "narrationMode": "faithful-chunking",
+    "storyText": "১৯২৯ সালের এক হিমশীতল ভোরে হেমকান্তের হাত ফসকে কুয়োর বালতি জলে পড়ে গেল। ক্ষীণ আলোয় বিশ্বস্ত হাত দুটির দিকে তাকিয়ে তিনি বুঝলেন—তিনি বুড়ো হয়েছেন। বালতি তোলার উপায় থাকলেও আর চেষ্টা করলেন না।"
+  },
+  "project": {
+    "title": "১৯২৯ স ল র এক হ মশ তল",
+    "visualStyle": "cinematic animated film, expressive characters, coherent production design, polished lighting, and natural motion",
+    "frame": {
+      "width": 1280,
+      "height": 720,
+      "aspectRatio": "16:9",
+      "framesPerSecond": 24
+    },
+    "estimatedDurationSeconds": 32.0,
+    "sceneCount": 1,
+    "narrationWordsPerMinute": 145,
+    "baseSeed": 3111293511
+  },
+  "planner": {
+    "type": "local",
+    "model": null
+  },
+  "entities": [],
+  "locations": [],
+  "scenes": [
+    {
+      "sceneId": "scene_001",
+      "sequence": 1,
+      "startSeconds": 0.0,
+      "endSeconds": 32.0,
+      "durationSeconds": 32,
+      "seed": 561193547,
+      "narration": {
+        "text": "১৯২৯ সালের এক হিমশীতল ভোরে হেমকান্তের হাত ফসকে কুয়োর বালতি জলে পড়ে গেল। ক্ষীণ আলোয় বিশ্বস্ত হাত দুটির দিকে তাকিয়ে তিনি বুঝলেন—তিনি বুড়ো হয়েছেন। বালতি তোলার উপায় থাকলেও আর চেষ্টা করলেন না।",
+        "wordCount": 75,
+        "startOffsetSeconds": 0.25
+      },
+      "visual": {
+        "summary": "An animated interpretation of: ১৯২৯ সালের এক হিমশীতল ভোরে হেমকান্তের হাত ফসকে কুয়োর বালতি জলে পড়ে গেল। ক্ষীণ আলোয় বিশ্বস্ত হাত দুটির দিকে তাকিয়ে তিনি বুঝলেন—তিনি বুড়ো হয়েছেন। বালতি তোলার উপায় থাকলেও আর চেষ্টা করলেন না।",
+        "locationId": null,
+        "settingDescription": "The location and period described or implied by the narration",
+        "entityIds": [],
+        "actions": [
+          {
+            "actionId": "scene_001_action_01",
+            "actorId": null,
+            "verb": "perform_story_beat",
+            "targetId": null,
+            "manner": "as described by the narration",
+            "description": "Show the central subject visibly acting out this story beat: ১৯২৯ সালের এক হিমশীতল ভোরে হেমকান্তের হাত ফসকে কুয়োর বালতি জলে পড়ে গেল। ক্ষীণ আলোয় বিশ্বস্ত হাত দুটির দিকে তাকিয়ে তিনি বুঝলেন—তিনি বুড়ো হয়েছেন। বালতি তোলার উপায় থাকলেও আর চেষ্টা করলেন না।",
+            "startOffsetSeconds": 0.0,
+            "durationSeconds": 32.0
+          }
+        ],
+        "camera": {
+          "shotType": "wide",
+          "angle": "eye-level",
+          "movement": "slow push-in",
+          "subject": "the central subject",
+          "description": "wide slow push-in following the central action"
+        },
+        "look": {
+          "lighting": "motivated cinematic lighting appropriate to the time, place, and mood",
+          "mood": "emotionally faithful to this story beat"
+        },
+        "continuityNotes": "Preserve recurring characters, clothing, props, geography, and color palette"
+      },
+      "transitionIn": {
+        "type": "fade",
+        "description": "fade-in"
+      }
+    }
+  ],
+  "timeline": {
+    "sceneOrder": [
+      "scene_001"
+    ],
+    "narrationTrack": [
+      {
+        "sceneId": "scene_001",
+        "startSeconds": 0.25,
+        "gainDb": 0
+      }
+    ],
+    "finalDurationSeconds": 32.0
+  }
+}
