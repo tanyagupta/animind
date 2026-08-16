@@ -317,6 +317,36 @@ def segment_seed(scene_seed: int, segment_number: int) -> int:
     return int.from_bytes(digest[:4], "big")
 
 
+def _action_beats(actions: Sequence[Any]) -> List[str]:
+    """Extract ordered visual beats that can be distributed across clips."""
+    beats: List[str] = []
+    for action in actions:
+        if not isinstance(action, dict) or not action.get("description"):
+            continue
+        description = str(action["description"]).strip()
+        parts = re.split(
+            r"(?<=[.!?。！？؟।॥])\s+|\s+(?:then|next|afterwards|finally)\s+|\s*[;—–]\s*",
+            description,
+            flags=re.IGNORECASE,
+        )
+        beats.extend(part.strip() for part in parts if part.strip())
+    return beats
+
+
+def _segment_action_text(
+    actions: Sequence[Any], segment_number: int, segment_count: int
+) -> str:
+    beats = _action_beats(actions)
+    if not beats:
+        return ""
+    if segment_count == 1:
+        return " Then ".join(beats)
+    start = math.floor((segment_number - 1) * len(beats) / segment_count)
+    end = math.floor(segment_number * len(beats) / segment_count)
+    selected = beats[start:end] if end > start else [beats[min(start, len(beats) - 1)]]
+    return " Then ".join(selected)
+
+
 def build_runway_prompt(
     storyboard: Mapping[str, Any],
     scene: Mapping[str, Any],
@@ -355,11 +385,7 @@ def build_runway_prompt(
     actions = visual.get("actions")
     if not isinstance(actions, list) or not actions:
         raise RenderError(f"{scene.get('sceneId')} has no visual actions.")
-    action_text = " Then ".join(
-        str(action.get("description"))
-        for action in actions
-        if isinstance(action, dict) and action.get("description")
-    )
+    action_text = _segment_action_text(actions, segment_number, segment_count)
     continuity_parts = [str(visual.get("continuityNotes", ""))]
     for entity_id in visual.get("entityIds", []):
         entity = entities_by_id.get(str(entity_id))
@@ -368,9 +394,14 @@ def build_runway_prompt(
 
     segment_note = ""
     if segment_count > 1:
+        progress = ("opening", "middle", "closing")[
+            min(2, (segment_number - 1) * 3 // segment_count)
+        ]
         segment_note = (
             f"This is continuous clip {segment_number} of {segment_count} for the same "
-            "scene; preserve exact subject, setting, screen direction, and motion continuity."
+            f"scene, showing only its {progress} beat. Continue the action rather than "
+            "restarting it; preserve exact subject, setting, screen direction, and motion "
+            "continuity. Do not replay earlier actions."
         )
     sections = (
         f"Animated film scene. {visual.get('summary', '')}.",

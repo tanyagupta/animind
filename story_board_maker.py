@@ -33,6 +33,7 @@ import math
 import os
 import re
 import sys
+import unicodedata
 from dataclasses import dataclass
 from datetime import datetime, timezone
 from pathlib import Path
@@ -245,15 +246,52 @@ def read_story(value: str) -> Tuple[str, str]:
         raise StoryboardError(f"Story file must be UTF-8 text: {path}") from exc
 
 
+SENTENCE_ENDINGS = ".!?。！？؟।॥"
+SENTENCE_CLOSERS = '"\'”’»›）)]}】〕〉》」』'
+
+
+def _is_cjk(character: str) -> bool:
+    codepoint = ord(character)
+    return (
+        0x3400 <= codepoint <= 0x4DBF
+        or 0x4E00 <= codepoint <= 0x9FFF
+        or 0xF900 <= codepoint <= 0xFAFF
+        or 0x3040 <= codepoint <= 0x30FF
+        or 0xAC00 <= codepoint <= 0xD7AF
+    )
+
+
+def _is_thai_or_lao(character: str) -> bool:
+    codepoint = ord(character)
+    return 0x0E00 <= codepoint <= 0x0EFF
+
+
 def word_count(text: str) -> int:
-    return len(re.findall(r"\b[\w'-]+\b", text, flags=re.UNICODE))
+    """Estimate spoken words without relying on Latin-style word boundaries."""
+    count = 0
+    for raw_token in re.findall(r"\S+", text, flags=re.UNICODE):
+        token = "".join(
+            character
+            for character in raw_token
+            if unicodedata.category(character)[0] in {"L", "M", "N"}
+        )
+        if not token:
+            continue
+        cjk_count = sum(_is_cjk(character) for character in token)
+        thai_lao_count = sum(_is_thai_or_lao(character) for character in token)
+        other_count = len(token) - cjk_count - thai_lao_count
+        if cjk_count:
+            count += max(1, math.ceil(cjk_count / 2.0))
+        if thai_lao_count:
+            count += max(1, math.ceil(thai_lao_count / 4.0))
+        if other_count:
+            count += 1
+    return count
 
 
 def infer_title(story: str) -> str:
-    first_sentence = re.split(
-        r"(?<=[.!?])\s+", story.replace("\n", " "), maxsplit=1
-    )[0]
-    words = re.findall(r"[\w'’-]+", first_sentence, flags=re.UNICODE)[:8]
+    first_sentence = _split_sentences(story)[0]
+    words = first_sentence.split()[:8]
     if not words:
         return "Untitled Story"
     title = " ".join(words)
@@ -261,13 +299,33 @@ def infer_title(story: str) -> str:
 
 
 def _split_sentences(story: str) -> List[str]:
+    """Split sentences without assuming a Latin alphabet or capitalization."""
     sentences: List[str] = []
     for paragraph in story.split("\n\n"):
-        parts = re.split(
-            r"(?<=[.!?])(?:[\"'”’])?\s+(?=[\"'“‘(]*[A-Z0-9])",
-            paragraph,
-        )
-        sentences.extend(part.strip() for part in parts if part.strip())
+        start = 0
+        index = 0
+        while index < len(paragraph):
+            if paragraph[index] not in SENTENCE_ENDINGS:
+                index += 1
+                continue
+            boundary = index + 1
+            while boundary < len(paragraph) and paragraph[boundary] in SENTENCE_CLOSERS:
+                boundary += 1
+            has_space = boundary < len(paragraph) and paragraph[boundary].isspace()
+            no_space_ending = paragraph[index] in "。！？؟।॥"
+            if boundary == len(paragraph) or has_space or no_space_ending:
+                part = paragraph[start:boundary].strip()
+                if part:
+                    sentences.append(part)
+                while boundary < len(paragraph) and paragraph[boundary].isspace():
+                    boundary += 1
+                start = boundary
+                index = boundary
+            else:
+                index += 1
+        remainder = paragraph[start:].strip()
+        if remainder:
+            sentences.append(remainder)
     return sentences
 
 
